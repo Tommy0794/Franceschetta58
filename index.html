@@ -1,0 +1,1831 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F2EFE7">
+<title>Franceschetta58</title>
+
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root{
+  --ink:#17213f;
+  --cream:#f4f1ea;
+  --paper:#fffdfa;
+  --soft:#e7e3da;
+  --muted:#6f746f;
+  --accent:#f2c94c;
+  --accent-dark:#d8aa17;
+  --success:#dfe9dc;
+  --warn:#efe5c7;
+  --danger:#f0d8d2;
+}
+*{box-sizing:border-box}
+html{background:var(--cream)}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:"DM Sans",Arial,Helvetica,sans-serif;
+}
+header{
+  background:rgba(244,241,234,.96);
+  color:var(--ink);
+  padding:16px 20px;
+  border-bottom:1px solid #d8d4cc;
+  position:sticky;top:0;z-index:10;
+  display:flex;align-items:center;gap:16px;
+  backdrop-filter:blur(10px);
+}
+header .brand-logo{width:min(220px,56vw);height:auto;display:block}
+header .brand-fallback{
+  font-family:"Space Grotesk",sans-serif;
+  font-weight:700;font-size:23px;letter-spacing:-1px
+}
+header .header-sub{
+  margin-left:auto;
+  font-size:10px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;
+  color:var(--muted)
+}
+header p{display:none}
+main{max-width:1080px;margin:auto;padding:22px 18px 100px}
+
+.hero{
+  min-height:250px;
+  background:var(--paper);
+  color:var(--ink);
+  border:1px solid #d8d4cc;
+  border-radius:22px;
+  padding:32px;
+  margin-bottom:18px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.hero h2{
+  margin:0;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(42px,7vw,76px);
+  line-height:.92;
+  letter-spacing:-.055em;
+  text-transform:uppercase;
+}
+.hero p{
+  margin:12px 0 0;color:var(--muted);
+  font-weight:600;text-transform:uppercase;
+  letter-spacing:.11em;font-size:11px;
+}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{
+  background:var(--paper);
+  border:1px solid #d8d4cc;
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 2px 12px rgba(23,33,63,.04);
+}
+.nav{
+  cursor:pointer;min-height:138px;
+  position:relative;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  transition:transform .14s ease,border-color .14s ease,background .14s ease;
+}
+.nav:hover{
+  transform:translateY(-2px);
+  border-color:#b8b3aa;
+  background:#fff
+}
+.nav .ico{
+  font-size:24px;position:absolute;top:16px;right:16px;
+  filter:none;opacity:1
+}
+.nav strong{
+  display:block;margin:9px 0 4px;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:20px;letter-spacing:-.035em;
+  text-transform:uppercase;line-height:1
+}
+.nav small,.muted,small{color:var(--muted)}
+
+button{
+  border:1px solid var(--ink);
+  border-radius:12px;
+  background:var(--ink);
+  color:#fff;
+  padding:10px 14px;
+  font-weight:700;
+  cursor:pointer;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+  font-size:11px;
+}
+button:hover{opacity:.92}
+button.secondary,.back{
+  background:transparent;color:var(--ink);
+  border-color:#bdb8ae
+}
+button.danger{
+  background:transparent;
+  color:#9f4e3b;
+  border-color:#d8b2a7
+}
+button:disabled{opacity:.45;cursor:not-allowed}
+.back{margin-bottom:16px}
+.logout{
+  margin-left:auto;order:3;
+  background:transparent;color:var(--ink);
+  border-color:#c8c3b9;
+  float:none;
+}
+
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.list{display:grid;gap:10px}
+.sectionTitle{
+  margin:26px 0 12px;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:24px;
+  letter-spacing:-.04em;
+  text-transform:uppercase
+}
+.status{
+  display:inline-block;
+  border:0;
+  border-radius:999px;
+  padding:6px 9px;
+  font-size:10px;
+  font-weight:800;
+  white-space:nowrap;
+  color:var(--ink)
+}
+.red{background:var(--danger)}
+.yellow{background:var(--warn)}
+.green{background:var(--success)}
+.blue{background:#e5e9ef}
+.grey{background:#ece9e3}
+
+input,select,textarea{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #cfcac0;
+  border-radius:12px;
+  background:#fff;
+  color:var(--ink);
+  font:inherit;
+  outline:none;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--ink);
+}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.full{grid-column:1/-1}
+
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{
+  background:transparent;
+  color:var(--ink);
+  border-color:#c8c3b9
+}
+.tab.active{
+  background:var(--ink);
+  color:#fff;
+  border-color:var(--ink)
+}
+
+.task{
+  padding:14px;
+  border-radius:14px;
+  background:#fff;
+  border:1px solid #dfdbd3
+}
+.taskmeta{
+  font-size:12px;color:var(--muted);margin-top:6px
+}
+
+.quick{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:24px;
+}
+.quick div{
+  background:#f8f6f1;
+  border:1px solid #e1ddd5;
+  border-radius:14px;
+  padding:14px;
+  color:var(--ink)
+}
+.quick strong{
+  display:block;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:22px;
+  letter-spacing:-.04em
+}
+.quick small{
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:9px
+}
+
+.loginwrap{
+  max-width:440px;
+  margin:42px auto;
+  background:var(--paper);
+  padding:26px;
+  border:1px solid #d8d4cc;
+  border-radius:22px;
+  box-shadow:0 10px 30px rgba(23,33,63,.06)
+}
+.loginwrap::before{display:none}
+.loginwrap h2{
+  margin:0 0 22px;
+  font-family:"Space Grotesk",sans-serif;
+  text-transform:uppercase;
+  font-size:38px;
+  letter-spacing:-.05em
+}
+.mode{
+  padding:11px 12px;
+  border-radius:12px;
+  margin-bottom:14px;
+  background:#f7f4ee;
+  border:1px solid #ddd8cf
+}
+.err{
+  background:var(--danger);
+  color:var(--ink);
+  padding:10px;
+  border:0;
+  border-radius:12px;
+  margin-top:10px;
+  display:none
+}
+
+.mealday{
+  display:grid;
+  grid-template-columns:100px 1fr 1fr;
+  gap:10px
+}
+.mealbox{
+  background:#f8f6f1;
+  border:1px solid #e0dcd3;
+  border-radius:14px;
+  padding:13px
+}
+.dayrow{display:grid;grid-template-columns:120px 1fr;gap:12px}
+.shift{
+  padding:11px;
+  border-radius:12px;
+  background:#f8f6f1;
+  border:1px solid #e0dcd3;
+  margin-bottom:7px
+}
+.low{border-left:5px solid var(--accent)}
+.ok{border-left:5px solid #9eb095}
+.kpi{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:34px;
+  font-weight:700;
+  letter-spacing:-.05em
+}
+.notice{
+  background:#f8f6f1;
+  border:1px solid #d8d4cc
+}
+.eventCard{border-left:5px solid var(--accent)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+
+#prepRoot>.card:first-child,
+#shiftRoot>.card:first-child,
+#eventRoot>.card:first-child,
+#inventoryRoot>.card:first-child,
+#mealRoot>.card:first-child{
+  background:var(--paper);
+  padding:24px
+}
+#prepRoot>.card:first-child h2,
+#shiftRoot>.card:first-child h2,
+#eventRoot>.card:first-child h2,
+#inventoryRoot>.card:first-child h2,
+#mealRoot>.card:first-child h2{
+  margin:0 0 8px;
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(32px,6vw,54px);
+  letter-spacing:-.05em;
+  text-transform:uppercase;
+  line-height:.95
+}
+
+.card h2,.card h3{
+  font-family:"Space Grotesk",sans-serif;
+  letter-spacing:-.035em
+}
+.card hr{
+  border:0;border-top:1px solid #ddd8cf
+}
+
+@media(min-width:760px){
+  .grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:650px){
+  header{padding:14px}
+  header .header-sub{display:none}
+  main{padding:14px 12px 85px}
+  .hero{min-height:240px;padding:24px}
+  .quick{grid-template-columns:1fr 1fr}
+  .formgrid,.mealday,.dayrow{grid-template-columns:1fr}
+  .full{grid-column:auto}
+  .grid{grid-template-columns:1fr 1fr}
+  .nav{min-height:128px}
+}
+
+.monthToolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin:18px 0 12px
+}
+.monthToolbar h3{
+  margin:0;font-family:"Space Grotesk",sans-serif;
+  font-size:28px;text-transform:uppercase;letter-spacing:-.045em
+}
+.calendarWrap{
+  overflow-x:auto;
+  border:1px solid #d8d4cc;
+  border-radius:18px;
+  background:var(--paper)
+}
+.monthGrid{
+  min-width:820px;
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+}
+.weekday{
+  padding:11px 8px;
+  font-size:10px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);
+  border-bottom:1px solid #ddd8cf;
+  background:#f8f6f1
+}
+.dayCell{
+  min-height:145px;
+  padding:10px;
+  border-right:1px solid #e3dfd7;
+  border-bottom:1px solid #e3dfd7;
+  background:#fff
+}
+.dayCell:nth-child(7n){border-right:0}
+.dayCell.empty{background:#f6f3ed}
+.dayHead{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:8px
+}
+.dayNum{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:18px;font-weight:700
+}
+.todayDot{
+  width:7px;height:7px;border-radius:50%;background:var(--accent)
+}
+.offGroup{margin-top:7px}
+.offLabel{
+  font-size:9px;font-weight:800;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--muted);margin-bottom:3px
+}
+.personChip{
+  display:inline-block;
+  margin:2px 3px 2px 0;
+  padding:4px 7px;
+  border-radius:999px;
+  font-size:10px;font-weight:700;
+  background:#ece9e3;color:var(--ink)
+}
+.personChip.full{background:#dedbd4}
+.personChip.am{background:#eee6d1}
+.personChip.pm{background:#e4e8ec}
+.calendarLegend{
+  display:flex;gap:8px;flex-wrap:wrap;margin-top:12px
+}
+.calendarLegend span{
+  font-size:11px;padding:6px 8px;border-radius:999px
+}
+
+.personChip.full{background:#f0d8d2}
+.personChip.am{background:#efe5c7}
+.personChip.pm{background:#dfe6f0}
+.photoImportBox{
+  margin-top:14px;padding:16px;border:1px dashed #c8c3b9;border-radius:14px;background:#fbfaf6
+}
+.photoPreviewWrap{
+  margin-top:12px;border:1px solid #ddd8cf;border-radius:14px;padding:10px;background:#fff
+}
+.photoPreviewWrap img{
+  width:100%;max-height:260px;object-fit:contain;border-radius:10px
+}
+.importHint{
+  font-size:12px;color:var(--muted);margin-top:8px
+}
+.importSuccess{
+  background:#e7f0e4;border-radius:12px;padding:10px 12px;margin-top:10px;font-size:12px
+}
+
+.mobileCalendarHint{
+  display:none;color:var(--muted);font-size:11px;margin:8px 0 0
+}
+@media(max-width:650px){
+  .monthToolbar h3{font-size:23px}
+  .mobileCalendarHint{display:block}
+}
+
+
+.smartPlan{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px
+}
+.smartPlan>div{
+  background:#f8f6f1;
+  border:1px solid #e0dcd3;
+  border-radius:12px;
+  padding:10px
+}
+.smartPlan small{
+  display:block;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  margin-bottom:4px
+}
+.smartPlan strong{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:18px
+}
+.productionNeed{
+  border-left:5px solid var(--accent)
+}
+.productionOk{
+  border-left:5px solid #9eb095
+}
+.autoPrepCard{
+  background:#fff;
+  border:1px solid #d8d4cc;
+  border-radius:16px;
+  padding:15px
+}
+.autoPrepQty{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:30px;
+  letter-spacing:-.05em;
+  font-weight:700
+}
+.planInputs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:12px
+}
+.planInputs label{
+  font-size:10px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  color:var(--muted)
+}
+.planInputs input{margin-top:4px}
+@media(max-width:650px){
+  .smartPlan{grid-template-columns:1fr 1fr}
+  .planInputs{grid-template-columns:1fr}
+}
+
+
+.todoHome{margin:0 0 18px;background:#fff;border:1px solid #d8d4cc;border-radius:18px;padding:18px}
+.todoHome h3{margin:0 0 6px;font-family:"Space Grotesk",sans-serif;font-size:30px;letter-spacing:-.04em;text-transform:uppercase}
+.todoHome .task{background:#faf8f3}
+.categoryTabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.categoryTabs button{background:transparent;color:var(--ink);border-color:#c8c3b9}
+.categoryTabs button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.quickAdd{display:grid;grid-template-columns:2fr .8fr .8fr auto;gap:8px;align-items:end}
+.eventBox{margin-top:18px;background:#fbfaf6;border:1px solid #ddd8cf;border-radius:16px;padding:16px}
+.eventNeedRow{display:grid;grid-template-columns:2fr 1fr auto;gap:8px;align-items:end;margin-top:10px}
+.supplierGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.supplierCard{background:#fff;border:1px solid #d8d4cc;border-radius:16px;padding:16px}
+.supplierCard h3{margin:0 0 10px;font-family:"Space Grotesk",sans-serif;text-transform:uppercase;letter-spacing:-.035em}
+.orderLine{padding:10px 0;border-top:1px solid #ece8df}
+.orderLine:first-of-type{border-top:0}
+.orderMeta{font-size:11px;color:var(--muted);margin-top:3px}
+.dailyBar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:14px 0}
+@media(max-width:650px){
+  .quickAdd,.eventNeedRow{grid-template-columns:1fr}
+  .supplierGrid{grid-template-columns:1fr}
+}
+
+
+/* V9.2 */
+.todayDate{font-size:13px;font-weight:700;text-transform:capitalize;color:var(--muted);margin:3px 0 14px}
+.weekPlanner{display:grid;grid-template-columns:repeat(7,minmax(145px,1fr));gap:9px;min-width:1080px}
+.weekWrap{overflow-x:auto;padding-bottom:6px}
+.weekDay{background:var(--paper);border:1px solid #d8d4cc;border-radius:16px;padding:12px;min-height:220px}
+.weekDay.today{outline:2px solid var(--ink)}
+.weekDay.closed{background:#ece9e3;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.weekDay h4{font-family:"Space Grotesk",sans-serif;margin:0 0 10px;text-transform:uppercase;font-size:15px}
+.weekDate{font-size:11px;color:var(--muted);margin-bottom:10px}
+.weekItem{border-top:1px solid #ece8df;padding:9px 0}
+.weekItem:first-of-type{border-top:0}
+.weekItem.done{opacity:.55;text-decoration:line-through}
+.gearCard{border-left:5px solid #8396b3}
+.gearLine{padding:10px 0;border-top:1px solid #ece8df}.gearLine:first-child{border-top:0}
+.spinBox{text-align:center;padding:28px 18px}
+.spinName{font-family:"Space Grotesk",sans-serif;font-size:42px;letter-spacing:-.05em;margin:14px 0}
+.spinWheel{width:150px;height:150px;border:10px solid #e2ded6;border-top-color:var(--ink);border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-size:46px}
+.spinHistory{display:grid;gap:8px;margin-top:12px}
+.shiftLong{white-space:normal;line-height:1.15;display:block;margin:4px 0;padding:6px 7px}
+@media(max-width:650px){
+ .spinName{font-size:34px}
+}
+
+
+/* V9.3 */
+.todoQuickAdd{display:grid;grid-template-columns:1fr auto;gap:8px;margin:12px 0 14px}
+.todoQuickAdd input{min-width:0}
+.waBar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid #ece8df}
+.waBar select{max-width:150px}
+.waBtn{background:#244b32;border-color:#244b32}
+.contactSetup{margin-top:12px;background:#f8f6f1;border:1px solid #e0dcd3;border-radius:14px;padding:12px}
+.contactSetup summary{cursor:pointer;font-weight:700}
+.supplierHead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+@media(max-width:650px){
+ .todoQuickAdd{grid-template-columns:1fr}
+ .waBar select{max-width:none}
+}
+
+
+/* V9.5 */
+.mealWeek{display:grid;grid-template-columns:repeat(6,minmax(170px,1fr));gap:10px;min-width:1100px}
+.mealWeekWrap{overflow-x:auto;padding-bottom:5px}
+.mealDayCard{background:var(--paper);border:1px solid #d8d4cc;border-radius:16px;padding:13px}
+.mealDayCard h4{font-family:"Space Grotesk",sans-serif;text-transform:uppercase;margin:0 0 3px}
+.mealField{margin-top:10px}
+.mealField label{font-size:9px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--muted)}
+.ideaCard{border-left:5px solid #9a7b52}
+.ideaDish{font-family:"Space Grotesk",sans-serif;font-size:25px;letter-spacing:-.04em;margin:5px 0}
+.recipeGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.recipeCard{background:var(--paper);border:1px solid #d8d4cc;border-radius:16px;padding:16px}
+.recipeCard h3{font-family:"Space Grotesk",sans-serif;margin:0 0 6px}
+.tagRow{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.miniTag{display:inline-block;border:1px solid #d8d4cc;border-radius:999px;padding:4px 7px;font-size:10px;background:#f8f6f1}
+.menuImport{border:1px dashed #bdb7ad;border-radius:16px;padding:16px;background:#fbfaf6}
+.menuImport img{width:100%;max-height:260px;object-fit:contain;border-radius:12px;margin-top:10px}
+.easterEgg{
+ position:fixed;right:18px;bottom:18px;z-index:50;
+ width:58px;height:58px;border-radius:50%;padding:0;font-size:29px;
+ box-shadow:0 8px 25px rgba(23,33,63,.22);
+ background:var(--paper);color:var(--ink);border:2px solid var(--ink)
+}
+.eggOverlay{position:fixed;inset:0;background:rgba(16,23,44,.55);z-index:100;display:flex;align-items:center;justify-content:center;padding:18px}
+.eggModal{width:min(520px,100%);background:var(--paper);border-radius:22px;padding:22px;border:1px solid #d8d4cc;box-shadow:0 20px 80px rgba(0,0,0,.25)}
+.eggIcon{font-size:56px;margin-bottom:8px}
+.eggModal h2{font-family:"Space Grotesk",sans-serif;text-transform:uppercase;letter-spacing:-.04em;margin:0 0 8px}
+.photoStatus{font-size:11px;color:var(--muted);margin-top:8px}
+@media(max-width:650px){
+ .recipeGrid{grid-template-columns:1fr}
+ .easterEgg{width:54px;height:54px;font-size:26px}
+}
+
+
+/* V9.8 */
+.hero{position:relative}
+.dashPersonalize{position:absolute;top:18px;right:18px}
+.dashboardGrid .nav{min-height:158px;display:grid;grid-template-rows:auto 1fr auto auto;justify-content:stretch;padding:16px;overflow:hidden}
+.dashboardGrid .nav .ico{position:static;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid #ddd8cf;border-radius:13px;background:#f7f4ee;font-size:25px;margin:0}
+.dashboardGrid .nav .navSpacer{min-height:12px}
+.dashboardGrid .nav strong{min-height:44px;margin:0 0 5px;display:flex;align-items:flex-end;line-height:1.05;font-size:18px}
+.dashboardGrid .nav small{min-height:30px;display:block;line-height:1.25}
+.dashboardGrid.editing .nav{border-style:dashed;cursor:grab;background:#fbfaf6}
+.dashboardGrid.editing .nav:active{cursor:grabbing}
+.dashMove{position:absolute;top:9px;right:9px;display:flex;gap:4px}
+.dashMove button{width:30px;height:30px;padding:0;background:var(--paper);color:var(--ink);border-color:#c8c3b9;font-size:14px}
+.dashboardEditBar{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 12px}
+.ideaFeed{display:grid;gap:10px}
+.ideaPost{border-left:5px solid #9aa7b8}
+.ideaPost.feedback{border-left-color:#9f8a60}
+.ideaPost.test{border-left-color:#879d7c}
+.ideaType{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ideaText{white-space:pre-wrap;line-height:1.5;margin:8px 0}
+.voiceField{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
+.voiceBtn{white-space:nowrap;background:#f7f4ee;color:var(--ink);border-color:#c8c3b9}
+.voiceBtn.listening{background:var(--danger);border-color:#c78677}
+.eggModal{max-height:88vh;overflow:auto}
+.eggBody p{line-height:1.55;margin:10px 0}
+.eggIngredients{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:10px 0}
+.eggIngredient{border:1px solid #e0dcd3;border-radius:10px;padding:8px 10px;background:#faf8f3;font-size:12px}
+.eggSteps{padding-left:20px}
+.eggSteps li{margin:8px 0;line-height:1.5}
+.eggSourceNote{font-size:11px;color:var(--muted);border-top:1px solid #e5e0d8;padding-top:10px;margin-top:14px}
+@media(max-width:650px){.dashPersonalize{position:static;margin-top:14px;align-self:flex-start}.eggIngredients{grid-template-columns:1fr}.voiceField{grid-template-columns:1fr}}
+
+
+/* V10 */
+.appMark{
+  flex:0 0 auto;width:50px;height:50px;border-radius:14px;
+  background:var(--accent);color:var(--ink);display:flex;align-items:center;justify-content:center;
+  gap:1px;border:1px solid rgba(23,33,63,.18);box-shadow:0 3px 10px rgba(23,33,63,.08);
+  font-family:"Space Grotesk",Arial,sans-serif;letter-spacing:-.07em
+}
+.appMark span{font-size:15px;font-weight:800;align-self:flex-start;margin-top:13px}
+.appMark strong{font-size:27px;line-height:1}
+.brandWords{display:flex;flex-direction:column;min-width:0;margin-right:auto}
+.brandWords>strong{font-family:"Space Grotesk",Arial,sans-serif;font-size:14px;letter-spacing:.02em}
+.brandWords small{font-size:10px;color:var(--muted);margin-top:2px}
+.headerIconBtn{
+  position:relative;background:var(--paper);color:var(--ink);border:1px solid #d8d4cc;
+  width:40px;height:40px;border-radius:12px;padding:0;font-size:18px
+}
+.notificationBadge{
+  position:absolute;right:-5px;top:-6px;min-width:19px;height:19px;border-radius:999px;
+  background:#d44e3f;color:white;border:2px solid var(--cream);font-size:9px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;padding:0 4px
+}
+.noticePanel{
+  position:fixed;right:14px;top:78px;width:min(390px,calc(100vw - 28px));z-index:120;
+  background:var(--paper);border:1px solid #d8d4cc;border-radius:18px;padding:15px;
+  box-shadow:0 18px 60px rgba(23,33,63,.22)
+}
+.noticeItem{padding:11px 0;border-top:1px solid #ece8df}
+.noticeItem:first-of-type{border-top:0}
+.noticeDot{width:9px;height:9px;border-radius:50%;background:var(--accent);display:inline-block;margin-right:7px}
+.globalSearchBox{
+  margin:12px 0 16px;background:var(--ink);border-radius:18px;padding:13px;
+  display:grid;grid-template-columns:auto 1fr auto;gap:9px;align-items:center
+}
+.globalSearchBox .searchGlass{font-size:19px}
+.globalSearchBox input{background:white;border:none;min-width:0}
+.searchResults{
+  position:fixed;inset:0;background:rgba(14,20,37,.55);z-index:110;padding:18px;
+  display:flex;align-items:flex-start;justify-content:center;overflow:auto
+}
+.searchSheet{width:min(720px,100%);background:var(--paper);border-radius:22px;padding:18px;margin-top:55px}
+.searchResult{padding:11px 0;border-top:1px solid #ece8df;cursor:pointer}
+.searchResult:first-child{border-top:0}
+.searchResult:hover{background:#faf7ef}
+.resultType{font-size:9px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.yellowRule{height:4px;width:52px;border-radius:99px;background:var(--accent);margin:6px 0 12px}
+.personGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.personCard{border-top:4px solid var(--accent)}
+.personAvatar{
+  width:46px;height:46px;border-radius:15px;background:var(--ink);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;font-family:"Space Grotesk";font-size:19px;font-weight:800
+}
+.profileDetails{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.profileDetails div{background:#f8f6f1;border-radius:11px;padding:9px}
+.profileDetails small{display:block;text-transform:uppercase;font-size:8px;letter-spacing:.07em;color:var(--muted);font-weight:800}
+.profileDetails strong{font-size:12px;display:block;margin-top:3px}
+.sensitiveNote{font-size:10px;color:var(--muted);margin-top:8px}
+.allergenPill{display:inline-block;padding:5px 8px;border-radius:999px;background:#f6e9c4;border:1px solid #e5ce89;font-size:10px;margin:3px 3px 0 0}
+.allergenNone{display:inline-block;padding:5px 8px;border-radius:999px;background:#e7ece5;font-size:10px}
+.orderHistoryCard{border-left:4px solid var(--accent)}
+.sentStamp{font-size:10px;color:#52705a;font-weight:700}
+.unsentStamp{font-size:10px;color:#a14e42;font-weight:700}
+.useSoon{border-left:5px solid var(--accent)!important}
+.useSoonBadge{background:var(--accent);color:var(--ink);border-radius:999px;padding:4px 7px;font-size:9px;font-weight:800}
+.smartStockList{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.smartStockChip{border:1px solid #ddd7cb;border-radius:999px;padding:5px 8px;background:#faf8f3;font-size:10px}
+.dictationHint{font-size:10px;color:var(--muted);margin-top:7px;line-height:1.35}
+.toast{
+  position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:160;
+  background:var(--ink);color:white;border-radius:999px;padding:10px 16px;font-size:11px;
+  box-shadow:0 12px 35px rgba(0,0,0,.22);max-width:90vw;text-align:center
+}
+.card.nav{transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.card.nav:hover{transform:translateY(-2px);border-color:#c8b567;box-shadow:0 8px 24px rgba(23,33,63,.08)}
+.card.nav .ico{background:#fff8d9!important;border-color:#ead991!important}
+@media(max-width:700px){
+  header{gap:9px;padding:11px 12px}
+  .appMark{width:44px;height:44px}
+  .brandWords>strong{font-size:12px}
+  .brandWords small{font-size:9px}
+  .headerIconBtn{width:37px;height:37px}
+  .personGrid{grid-template-columns:1fr}
+  .profileDetails{grid-template-columns:1fr 1fr}
+  .globalSearchBox{grid-template-columns:auto 1fr}
+  .globalSearchBox button{grid-column:1/-1;width:100%}
+}
+
+
+/* V10.1 — Staff Meal */
+.mealEditorCard{border-top:4px solid var(--accent)}
+.mealEditorGrid{
+  display:grid;grid-template-columns:1fr 1fr 2fr auto;gap:9px;align-items:end;margin-top:12px
+}
+.mealTableWrap{overflow-x:auto;border:1px solid #ddd8cf;border-radius:16px;background:var(--paper)}
+.mealTable{width:100%;border-collapse:collapse;min-width:680px}
+.mealTable th{
+  padding:11px 13px;text-align:left;background:var(--ink);color:white;
+  font-size:10px;letter-spacing:.08em;text-transform:uppercase
+}
+.mealTable td{padding:14px 13px;border-top:1px solid #ece8df;vertical-align:top}
+.mealTable tbody tr:first-child td{border-top:0}
+.mealTable .dayCell{width:145px}
+.mealTable .dayName{font-family:"Space Grotesk",sans-serif;font-weight:800;text-transform:uppercase}
+.mealTable .mealRead{font-weight:700;line-height:1.4}
+.mealTable .mealEmpty{color:var(--muted);font-weight:400}
+.mealTable .closedRow td{background:#f0ede6;color:var(--muted)}
+.mealMeta{font-size:9px;color:var(--muted);margin-top:5px}
+.ideaUseBar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
+@media(max-width:760px){
+  .mealEditorGrid{grid-template-columns:1fr 1fr}
+  .mealEditorGrid .mealTextField{grid-column:1/-1}
+  .mealEditorGrid .mealSaveBtn{grid-column:1/-1;width:100%}
+}
+
+</style>
+
+
+
+<style>
+.stockTopTabs,.subTabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.stockTopTabs button,.subTabs button{background:transparent;color:var(--ink);border-color:#c8c3b9}.stockTopTabs button.active,.subTabs button.active{background:var(--ink);color:#fff}.stockRow{border-left:5px solid #9eb095}.stockRow.low{border-left-color:#c44e3b}.redDot{display:inline-block;width:10px;height:10px;background:#c44e3b;border-radius:50%;margin-left:7px}.qtyBig{font-family:"Space Grotesk",sans-serif;font-size:26px;letter-spacing:-.04em}.adjust{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.adjust input{max-width:90px;text-align:center}.eventSplit{display:grid;grid-template-columns:1fr 1fr;gap:12px}.countdownBox{font-family:"Space Grotesk",sans-serif;font-size:28px;letter-spacing:-.045em}.progressBar{height:8px;background:#e8e4dc;border-radius:999px;overflow:hidden;margin-top:8px}.progressBar i{display:block;height:100%;background:#6a8a68}.buyoutCard{border-left:5px solid #8396b3}.eventOutCard{border-left:5px solid var(--accent)}.persistNote{font-size:12px;color:var(--muted);margin-top:7px}@media(max-width:650px){.eventSplit{grid-template-columns:1fr}}
+</style>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#17213F">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Franceschetta58">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+</head>
+<body>
+<header>
+  <div class="appMark" aria-label="Franceschetta58"><span>F</span><strong>58</strong></div>
+  <div class="brandWords"><strong>FRANCESCHETTA58</strong><small>Kitchen System • V10.1 • APP</small></div>
+  <button class="headerIconBtn" id="notificationBtn" style="display:none" onclick="toggleNotificationPanel()" title="Notifiche">🔔<span id="notificationBadge" class="notificationBadge" style="display:none">0</span></button>
+  <button class="logout" id="changeUserBtn" style="display:none" onclick="changeUser()">Cambia utente</button>
+  <button class="logout" id="logoutBtn" style="display:none" onclick="logout()">Esci</button>
+</header>
+<main id="app"></main>
+
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore-compat.js"></script>
+<script>
+window.F58_FIREBASE_CONFIG = {
+  apiKey: "AIzaSyAyZFhWeMXnDs6c1JtwlRzhZxJIQRYWZuw",
+  authDomain: "franceschetta58-eadcc.firebaseapp.com",
+  projectId: "franceschetta58-eadcc",
+  storageBucket: "franceschetta58-eadcc.firebasestorage.app",
+  messagingSenderId: "429716250405",
+  appId: "1:429716250405:web:5d51a00b9c5927fa0844cc",
+  measurementId: "G-42YBB8QFR2"
+};
+</script>
+<script>
+const CREW_NAMES=["Vins","Tommy","Carlo","Rocco","T","Antonio"];
+const sections={
+ personale:["👥","Personale","Brigata, ruoli e profili"],
+ turni:["🗓️","Turni","Calendario mensile"],
+ eventi:["🎪","Eventi & Buyout","Fuori sede e ristorante"],
+ programmazione:["📋","Programmazione settimanale","Cosa fare giorno per giorno"],
+ prep:["✅","Preparazioni","Passaggio consegne"],
+ staffmeal:["🥘","Staff Meal","Pranzo e cena staff"],
+ magazzino:["📦","Magazzino","Inventari e stoccaggi"],
+ menu:["✏️","Nuovo menu & idee","Idee, prove e commenti"],
+ fornitori:["🧾","Fornitori e ordini","Ordini giornalieri"],
+ allergeni:["🌾","Allergeni","Dal ricettario ai piatti"],
+ ricette:["📚","Menu & Ricettario","Piatti, ricette e scarti"],
+ grembiuli:["🧺","Grembiuli Spin","Turno lavaggio"]
+};
+const STATIONS=["Antipasti & Dolci","Primi","Secondi","Banco"];
+const PANTRY_CATS=["Farine","Legumi","Secco","Freezer","Frigo","Verdure","Altro"];
+const SUPPLIERS=["Grassi","Verdure","Forno","Forniture","Erbe","Selecta","Carne","Ecopesce","Amazon","Altro","Molino della Giovanna","Pasta Mancini"];
+const ORDER_UNITS=["kg","L","pz","numero","buste","confezioni","rotoli","vaschette","cartoni","casse","bottiglie","barattoli","sacchi","pacchi","mazzi","vassoi","altro"];
+const UNITS=["buste","porzioni","vaschette","kg","L","pz","confezioni"];
+
+let onlineMode=false,db=null,auth=null,currentUser=null,currentProfile=null,unsub=[];
+let tasks=[],shifts=[],events=[],eventPreps=[],eventGear=[],weeklyPlan=[],inventory=[],orders=[],meals=[],apronHistory=[],menuRecipes=[],menuIdeas=[],teamProfiles=[];
+let currentPartita="Primi",shiftMonthCursor=new Date(new Date().getFullYear(),new Date().getMonth(),1),weekCursor=startOfWeek(new Date());
+let stockView="station",stockStation="Antipasti & Dolci",pantryCat="Farine",orderDateCursor=tomorrowKey();
+let whatsappContacts={Vins:"",Tommy:""};
+let mealWeekCursor=startOfWeek(new Date()),menuPhotoDataUrl="",generatedMealIdea=null,dashboardEditMode=false,dashboardDragKey=null,orderHistoryMode=false,notificationPanelOpen=false;
+let shiftPhotoDataUrl="";
+
+const demoTasks=[
+ {id:"p1",type:"comune",partita:"Comuni",text:"Preparare fondo vegetale",due:"Oggi",done:false,author:"Vins",createdAt:Date.now()-5000000},
+ {id:"p2",type:"comune",partita:"Comuni",text:"Fare brodo di funghi",due:"Oggi",done:false,author:"Tommy",createdAt:Date.now()-3000000},
+ {id:"p3",type:"partita",partita:"Primi",text:"Tagliare erba cipollina",due:"Domani",done:false,author:"Carlo",createdAt:Date.now()-2000000},
+ {id:"p4",type:"partita",partita:"Primi",text:"Frullare parmigiano",due:"Domani",done:false,author:"Carlo",createdAt:Date.now()-1500000}
+];
+const demoShifts=[
+ {id:"s1",date:"2026-09-22",name:"Carlo",offType:"full"},{id:"s2",date:"2026-09-23",name:"Rocco",offType:"am"},
+ {id:"s3",date:"2026-09-25",name:"Antonio",offType:"pm"},{id:"s4",date:"2026-09-28",name:"Tommy",offType:"full"}
+];
+const demoEvents=[
+ {id:"e1",type:"evento",name:"Evento Modena",date:"2026-09-26",time:"19:30",covers:80,notes:"Servizio fuori sede"},
+ {id:"e2",type:"buyout",name:"Buyout Franceschetta",date:"2026-10-02",time:"20:00",covers:50,notes:"Menu in gran parte dalla carta"}
+];
+const demoEventPreps=[
+ {id:"ep1",eventId:"e1",name:"Salsa friggitello",qty:6,unit:"kg",note:"Portare 2 biberon extra",equipment:"Biberon + GN",done:false},
+ {id:"ep2",eventId:"e1",name:"Cefalo",qty:80,unit:"porzioni",note:"",equipment:"Box termici",done:true}
+];
+const demoEventGear=[
+ {id:"g1",eventId:"e1",item:"Carta",qty:"2 rotoli",note:""},
+ {id:"g2",eventId:"e1",item:"Cucchiai",qty:"80",note:""},
+ {id:"g3",eventId:"e1",item:"Pentole",qty:"2",note:"grandi"},
+ {id:"g4",eventId:"e1",item:"Padelle",qty:"3",note:""}
+];
+const demoWeeklyPlan=[
+ {id:"w1",date:"2026-09-23",text:"Fare i savoiardi",done:false,author:"Tommy"},
+ {id:"w2",date:"2026-09-24",text:"Pelare le patate",done:false,author:"Vins"},
+ {id:"w3",date:"2026-09-24",text:"Fare la terrina di patate",done:false,author:"Vins"}
+];
+const demoApronHistory=[];
+
+
+const demoMenuRecipes=[
+ {id:"r1",name:"Faraona",ingredients:["faraona","erbe aromatiche"],scraps:["ritagli di faraona","ossa di faraona"],recipe:"Scheda ricetta da completare.",author:"Tommy"},
+ {id:"r2",name:"Terrina di patate",ingredients:["patate","burro","sale"],scraps:["ritagli di patata"],recipe:"Scheda ricetta da completare.",author:"Vins"},
+ {id:"r3",name:"Parmigiano e aceto balsamico",ingredients:["Parmigiano Reggiano","aceto balsamico"],scraps:["croste di parmigiano"],recipe:"Scheda ricetta da completare.",author:"Tommy"}
+];
+
+const demoTeamProfiles=[
+ {id:"tpVins",name:"Vins",role:"admin",station:"Chef / Pass",favoriteDish:"",hatedIngredient:"",allergies:"",intolerances:"",notes:""},
+ {id:"tpTommy",name:"Tommy",role:"admin",station:"Sous Chef",favoriteDish:"",hatedIngredient:"",allergies:"",intolerances:"",notes:""},
+ {id:"tpCarlo",name:"Carlo",role:"user",station:"Primi",favoriteDish:"",hatedIngredient:"",allergies:"",intolerances:"",notes:""},
+ {id:"tpRocco",name:"Rocco",role:"user",station:"Secondi",favoriteDish:"",hatedIngredient:"",allergies:"",intolerances:"",notes:""},
+ {id:"tpT",name:"T",role:"user",station:"Antipasti & Dolci",favoriteDish:"",hatedIngredient:"",allergies:"",intolerances:"",notes:""},
+ {id:"tpAntonio",name:"Antonio",role:"user",station:"Banco",favoriteDish:"",hatedIngredient:"",allergies:"",intolerances:"",notes:""},
+ {id:"tpStagista",name:"Stagista",role:"intern",station:"Supporto",favoriteDish:"",hatedIngredient:"",allergies:"",intolerances:"",notes:""}
+];
+
+const demoMenuIdeas=[
+ {id:"mi1",type:"idea",title:"Nuovo piatto con topinambur",text:"Provare una crema molto liscia, qualcosa di acido e una parte croccante. Da ragionare per il prossimo menu.",author:"Carlo",authorUid:"demo-Carlo",createdAt:Date.now()-7200000},
+ {id:"mi2",type:"feedback",title:"Terrina di patate",text:"Mi piace molto la consistenza, ma secondo me al servizio manca un elemento fresco per alleggerire.",author:"Rocco",authorUid:"demo-Rocco",createdAt:Date.now()-3600000},
+ {id:"mi3",type:"test",title:"Faraona",text:"Da provare un utilizzo dei ritagli per lo staff meal prima di decidere come gestire lo scarto settimanale.",author:"Tommy",authorUid:"demo-Tommy",createdAt:Date.now()-1800000}
+];
+
+const demoInventory=[
+ {id:"i1",kind:"station",station:"Antipasti & Dolci",name:"Salsa succo friggitello",qty:2,unit:"buste",location:"Freezer 1",lowAt:1},
+ {id:"i2",kind:"station",station:"Antipasti & Dolci",name:"Cefalo",qty:15,unit:"porzioni",location:"Freezer 1",lowAt:1},
+ {id:"i3",kind:"station",station:"Primi",name:"Ragù",qty:4,unit:"buste",location:"Freezer 2",lowAt:1},
+ {id:"i4",kind:"event",eventId:"e1",station:"Antipasti & Dolci",name:"Salsa friggitello",qty:3,unit:"buste",location:"Freezer eventi",lowAt:0},
+ {id:"i5",kind:"pantry",category:"Farine",name:"Farina 00",qty:4,unit:"confezioni",location:"Dispensa",lowAt:1},
+ {id:"i6",kind:"pantry",category:"Legumi",name:"Ceci secchi",qty:1,unit:"confezioni",location:"Dispensa",lowAt:1},
+ {id:"i7",kind:"pantry",category:"Secco",name:"Riso",qty:6,unit:"confezioni",location:"Dispensa",lowAt:1}
+];
+
+function firebaseConfigured(){return !!(window.F58_FIREBASE_CONFIG?.apiKey && window.F58_FIREBASE_CONFIG?.projectId)}
+function roleLabel(){return currentProfile?.role==="admin"?"Admin":currentProfile?.role==="intern"?"Stagista":"Utente"}
+function isAdmin(){return currentProfile?.role==="admin"}
+function canStaff(){return currentProfile&&currentProfile.role!=="intern"}
+function canEditMeals(){return !!currentProfile}
+function num(v){const n=Number(v);return Number.isFinite(n)?n:0}
+function localDateKey(d=new Date()){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function tomorrowKey(){const d=new Date();d.setDate(d.getDate()+1);return localDateKey(d)}
+function fmtDate(s){if(!s)return "—";return new Date(s+"T12:00:00").toLocaleDateString("it-IT",{day:"2-digit",month:"short",year:"numeric"})}
+function ts(){return onlineMode?firebase.firestore.FieldValue.serverTimestamp():Date.now()}
+function setPage(p){document.body.dataset.page=p}
+
+function startOfWeek(d){
+ const x=new Date(d);x.setHours(12,0,0,0);
+ const dow=(x.getDay()+6)%7;x.setDate(x.getDate()-dow);return x;
+}
+function addDays(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x}
+function fullDateIT(dateOrKey){
+ const d=typeof dateOrKey==="string"?new Date(dateOrKey+"T12:00:00"):dateOrKey;
+ return d.toLocaleDateString("it-IT",{weekday:"long",day:"numeric",month:"long"});
+}
+function shortDateIT(d){return d.toLocaleDateString("it-IT",{day:"2-digit",month:"short"})}
+function todayKey(){return localDateKey(new Date())}
+function weekRangeLabel(){
+ const a=weekCursor,b=addDays(weekCursor,6);
+ return `${shortDateIT(a)} – ${shortDateIT(b)}`;
+}
+function isLegacyTodayTask(t){
+ return !t.dueDate && String(t.due||"").toLowerCase()==="oggi";
+}
+
+
+function init(){
+ if(!firebaseConfigured() || !window.firebase){showLogin("Connessione Firebase non disponibile. Controlla Internet e ricarica.");return}
+ try{
+  firebase.initializeApp(window.F58_FIREBASE_CONFIG);auth=firebase.auth();db=firebase.firestore();onlineMode=true;
+  auth.onAuthStateChanged(async u=>{
+   stopRealtime();
+   if(!u){currentUser=null;currentProfile=null;showLogin();return}
+   try{
+    const snap=await db.collection("users").doc(u.uid).get();
+    if(!snap.exists || !["admin","user","intern"].includes(snap.data().role) || snap.data().disabled===true){
+     await auth.signOut();showLogin("Profilo non abilitato. Contatta Tommy o Vins.");return;
+    }
+    currentUser=u;currentProfile=snap.data();startRealtime();home();
+   }catch(e){showLogin("Impossibile verificare il profilo: "+(e.message||"errore di rete"))}
+  });
+ }catch(e){showLogin("Firebase non disponibile: "+(e.message||"errore"))}
+}
+function showLogin(msg=""){
+ document.getElementById("logoutBtn").style.display="none";const cub=document.getElementById("changeUserBtn");if(cub)cub.style.display="none";const nb=document.getElementById("notificationBtn");if(nb)nb.style.display="none";
+ document.getElementById("app").innerHTML=`<div class="loginwrap card"><h2>Accesso<br>cucina</h2>
+ <div class="mode"><strong>Accesso personale Firebase</strong><br><small>Questo telefono resterà collegato finché non premi Esci.</small></div>
+ <label>Email</label><input id="loginEmail" type="email" autocomplete="username">
+ <div style="height:10px"></div><label>Password</label><div style="position:relative"><input id="loginPass" type="password" style="padding-right:95px"><button type="button" id="togglePassBtn" onclick="togglePassword()" style="position:absolute;right:6px;top:6px;padding:6px 10px;background:#e5e7eb;color:#111827">Mostra</button></div>
+ <div class="persistNote">Accesso persistente: non dovrai rimettere la password ogni volta che riapri l'app.</div>
+ <button style="width:100%;margin-top:12px" onclick="login()">Accedi</button><div class="err" id="loginErr">${msg}</div></div>`;
+ if(msg)document.getElementById("loginErr").style.display="block";
+}
+function togglePassword(){const i=loginPass,b=togglePassBtn,v=i.type==="text";i.type=v?"password":"text";b.textContent=v?"Mostra":"Nascondi"}
+async function login(){
+ try{
+  if(!auth)throw new Error("Firebase non disponibile. Controlla la connessione.");
+  await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+  await auth.signInWithEmailAndPassword(loginEmail.value.trim(),loginPass.value);
+ }catch(e){loginErr.textContent=e.message||"Accesso non riuscito";loginErr.style.display="block"}
+}
+async function logout(){stopRealtime();if(auth)await auth.signOut();currentUser=null;currentProfile=null;showLogin()}
+async function changeUser(){await logout()}
+function loadDemo(){
+ const read=(k)=>{try{const raw=localStorage.getItem(k);return raw?JSON.parse(raw):null}catch(e){return null}};
+ tasks=read("f58v9_tasks")??read("f58v7_tasks")??demoTasks;
+ shifts=read("f58v9_shifts")??read("f58v7_shifts")??demoShifts;
+ events=read("f58v9_events")??read("f58v7_events")??demoEvents;
+ eventPreps=read("f58v9_eventpreps")??demoEventPreps;
+ eventGear=read("f58v92_eventgear")??demoEventGear;
+ weeklyPlan=read("f58v92_weeklyplan")??demoWeeklyPlan;
+ apronHistory=read("f58v92_aprons")??demoApronHistory;
+ inventory=read("f58v9_inventory")??read("f58v7_inventory")??demoInventory;
+ orders=read("f58v9_orders")??read("f58v85_orders")??[];
+ meals=read("f58v9_meals")??read("f58v7_meals")??[];
+ whatsappContacts=read("f58v93_whatsapp")??{Vins:"",Tommy:""};
+ menuRecipes=read("f58v95_recipes")??demoMenuRecipes;
+ menuIdeas=read("f58v98_menuideas")??demoMenuIdeas;
+ teamProfiles=read("f58v10_team")??demoTeamProfiles;
+ tasks=tasks.map(t=>({...t,done:t.done??(t.status==="fatto")}));
+ events=events.map(e=>({...e,type:e.type||"evento",time:e.time||"20:00"}));
+ inventory=inventory.map(x=>x.kind?x:{...x,kind:"pantry",category:x.category||x.area||"Altro",location:x.location||x.area||"Dispensa",lowAt:x.lowAt??1});
+}
+function saveDemo(){localStorage.setItem("f58v9_tasks",JSON.stringify(tasks));localStorage.setItem("f58v9_shifts",JSON.stringify(shifts));localStorage.setItem("f58v9_events",JSON.stringify(events));localStorage.setItem("f58v9_eventpreps",JSON.stringify(eventPreps));localStorage.setItem("f58v92_eventgear",JSON.stringify(eventGear));localStorage.setItem("f58v92_weeklyplan",JSON.stringify(weeklyPlan));localStorage.setItem("f58v92_aprons",JSON.stringify(apronHistory));localStorage.setItem("f58v9_inventory",JSON.stringify(inventory));localStorage.setItem("f58v9_orders",JSON.stringify(orders));localStorage.setItem("f58v9_meals",JSON.stringify(meals));localStorage.setItem("f58v93_whatsapp",JSON.stringify(whatsappContacts));localStorage.setItem("f58v95_recipes",JSON.stringify(menuRecipes));localStorage.setItem("f58v98_menuideas",JSON.stringify(menuIdeas));localStorage.setItem("f58v10_team",JSON.stringify(teamProfiles))}
+function stopRealtime(){unsub.forEach(f=>{try{f()}catch(e){}});unsub=[]}
+function startRealtime(){
+ stopRealtime();const watch=(col,setter)=>unsub.push(db.collection(col).onSnapshot(s=>{setter(s.docs.map(d=>({id:d.id,...d.data()})));refreshCurrent()}));
+ watch("preparations",x=>tasks=x.map(t=>({...t,done:t.done??(t.status==="fatto")})));watch("shifts",x=>shifts=x);watch("events",x=>events=x);watch("eventPreparations",x=>eventPreps=x);watch("eventEquipment",x=>eventGear=x);watch("weeklyPlan",x=>weeklyPlan=x);watch("inventory",x=>inventory=x);watch("orders",x=>orders=x);watch("staffMeals",x=>meals=x);watch("apronHistory",x=>apronHistory=x);watch("menuRecipes",x=>menuRecipes=x);watch("menuIdeas",x=>menuIdeas=x);watch("teamProfiles",x=>teamProfiles=x);
+}
+function refreshCurrent(){const p=document.body.dataset.page;if(p==="home")home();if(p==="prep")renderPrep();if(p==="turni")renderShifts();if(p==="eventi")renderEvents();if(p?.startsWith("event:"))renderEventDetail(p.split(":")[1]);if(p==="programmazione")renderWeeklyPlan();if(p==="magazzino")renderInventory();if(p==="fornitori")renderSuppliers();if(p==="staffmeal")renderMeals();if(p==="grembiuli")renderAprons();if(p==="ricette")renderRecipes();if(p==="menu")renderMenuIdeas();if(p==="personale")renderPersonnel();if(p==="allergeni")renderAllergens();updateNotificationBadge()}
+
+
+function hashText(s){
+ let h=0;for(let i=0;i<s.length;i++)h=((h<<5)-h)+s.charCodeAt(i),h|=0;return Math.abs(h);
+}
+function dailyToolIcon(){
+ const tools=["🥄","🍴","🔪","🍳","🥣","🫕","🧂","🧁","🫙","🥢"];
+ const seed=`${currentProfile?.name||"chef"}-${todayKey()}`;
+ return tools[hashText(seed)%tools.length];
+}
+function currentSeason(){
+ const m=new Date().getMonth()+1;
+ if([12,1,2].includes(m))return "inverno";
+ if([3,4,5].includes(m))return "primavera";
+ if([6,7,8].includes(m))return "estate";
+ return "autunno";
+}
+function daySerial(){
+ const d=new Date();
+ const start=new Date(d.getFullYear(),0,0);
+ return Math.floor((d-start)/86400000);
+}
+const DAILY_GZ=[
+ {title:"Pumpkin pie",meta:"GialloZafferano • 12 persone • difficoltà media",intro:"Una torta di zucca speziata con guscio friabile: un modo interessante di usare un ingrediente autunnale anche in pasticceria.",ingredients:["Farina 00 310 g","Burro freddo 160 g","Uovo 1 (circa 52 g)","Acqua molto fredda 90 g","Zucchero 15 g","Sale 4 g","Zucca pulita 500 g","Latte condensato 200 g","Uova 2 (circa 110 g)","Zucchero di canna 75 g","Zucchero 75 g","Cannella e noce moscata q.b.","Panna fresca 100 g"],body:["La zucca viene cotta fino a diventare morbida e poi frullata. A parte si lavorano uova, zuccheri, spezie e latte condensato; la purea fredda completa il ripieno. Un riposo in frigorifero aiuta la crema a diventare più uniforme.","Il guscio si prepara con farina, burro freddo, poco zucchero, sale, acqua e uovo, lavorando senza scaldare troppo l'impasto. Dopo il riposo si stende nello stampo, si versa la crema e si cuoce in forno statico intorno a 175 °C fino a quando il centro è assestato. Da fredda può essere servita con panna montata."],note:"Se avete zucca già cotta o eccedenze pulite, la stessa idea può essere semplificata per uno staff meal dolce."},
+ {title:"Polpette di patate al forno",meta:"GialloZafferano • circa 20 pezzi • facile",intro:"Polpette morbide di patata, impanate e cotte al forno: molto adatte al recupero di patate cotte e piccoli resti di formaggio o erbe.",ingredients:["Patate 800 g","Grana Padano 40 g","Pangrattato 60 g + 120 g per panare","Uovo 1 nell'impasto + 2 per panare","Prezzemolo 1 mazzetto","Origano e timo q.b.","Aglio in polvere 2 g","Olio EVO 2 cucchiai","Sale e pepe q.b."],body:["Le patate si lessano, si schiacciano e si lavorano con formaggio grattugiato, erbe, uovo e pangrattato. L'impasto deve restare morbido ma modellabile.","Dopo la formatura, le polpette passano nell'uovo e nel pangrattato. Si cuociono a 180 °C con poco olio per una quindicina di minuti o finché diventano dorate."],note:"Per lo staff potete aggiungere piccoli cubi di formaggio, verdure tritate o ritagli di salume."},
+ {title:"Torta salata di zucchine",meta:"GialloZafferano • 6 persone • difficoltà media",intro:"Brisée, zucchine, formaggio, pancetta e uova: un formato molto efficace per trasformare piccole quantità di prodotti in un pasto completo.",ingredients:["Farina 00 200 g","Burro freddo 100 g","Acqua fredda 50 g","Zucchine 600 g","Formaggio a pasta filata 270 g","Pancetta dolce 160 g","Uova 4","Parmigiano Reggiano 50 g","Scalogno 1","Olio EVO, sale e pepe q.b."],body:["La brisée viene impastata velocemente e lasciata riposare. Intanto si rosolano scalogno e pancetta, poi si aggiungono le zucchine e si cuociono mantenendole ancora riconoscibili.","Uova e parmigiano legano zucchine e formaggio. Il ripieno entra nel guscio di brisée e la torta cuoce a circa 180 °C fino a doratura. Si può mangiare calda o tiepida."],note:"La logica si presta benissimo a sostituire zucchine e pancetta con verdure o ritagli disponibili."},
+ {title:"Filetto in crosta",meta:"GialloZafferano • secondo piatto • preparazione tecnica",intro:"Filetto di manzo, funghi, prosciutto e sfoglia: una preparazione classica utile anche per ragionare su umidità, riposo e cottura della carne.",ingredients:["Filetto di manzo 500 g","Pasta sfoglia rettangolare 1 rotolo","Prosciutto crudo dolce 90 g","Funghi champignon 300 g","Senape q.b.","Tuorli 2","Prezzemolo, olio EVO, sale e pepe q.b."],body:["I funghi vengono tritati e cotti finché perdono l'acqua: è un passaggio fondamentale per non bagnare la sfoglia. La carne viene condita, rassodata in forma e poi rosolata.","Il filetto viene velato di senape, avvolto con prosciutto e funghi e infine chiuso nella sfoglia. Il tuorlo serve alla finitura esterna. La difficoltà è cuocere bene la crosta lasciando il cuore della carne al punto desiderato."],note:"È una bella curiosità tecnica da leggere e discutere in brigata."},
+ {title:"Arrosto all'arancia",meta:"GialloZafferano • 4 persone • circa 2 ore",intro:"Un arrosto di vitellone con agrumi, vino e brandy. La parte più interessante è il recupero del fondo in una salsa profumata.",ingredients:["Reale di vitellone 1 kg","Succo di 2 arance","Arancia 1 + 1 per finire","Burro 40 g","Vino bianco 100 g","Brandy 200 g","Cipolla bianca 1","Amido di mais 2 cucchiaini","Acqua 1 cucchiaino","Olio EVO e sale q.b."],body:["La carne viene rosolata con cipolla, burro e poco olio e passa poi in forno con l'arancia. La sonda aiuta a fermare la cottura al cuore nel momento giusto, lasciando poi riposare l'arrosto.","Il fondo viene allungato con succo d'arancia, vino e brandy, legato con poco amido e frullato. La carne si serve affettata con la salsa e arancia fresca."],note:"Una buona idea quando ci sono agrumi in eccedenza o un fondo d'arrosto da valorizzare."}
+];
+
+const DAILY_HISTORY=[
+ {title:"Le infinite peripezie del tortellino",meta:"Ricette Storiche • storia emiliana",intro:"Il tortellino moderno è il risultato di secoli di trasformazioni. Le prime versioni conosciute sono molto lontane dal ripieno che oggi consideriamo classico.",ingredients:["Per circa 3 kg: lombo di maiale 300 g","Prosciutto crudo 300 g","Mortadella di Bologna 300 g","Parmigiano Reggiano 450 g","Uova 3","Noce moscata 1","Sfoglia: farina 00 1,2 kg","Uova intere 12","Sale 1 presa"],body:["Nel 1501 compaiono tortelli bolognesi con ripieni di formaggio, uova, spezie e perfino uva passa; alcune versioni venivano fritte e servite con zucchero. Nei secoli successivi il ripieno si stabilizza maggiormente attorno a pollo o cappone, midollo, parmigiano, uova e spezie.","La carne di maiale entra relativamente tardi. La ricetta di Pellegrino Artusi del 1891 è uno snodo importante, mentre la formula depositata a Bologna nel 1974 sostituisce il midollo con il lombo. Anche la forma è cambiata: per molto tempo si usarono dischi di sfoglia, mentre il quadrato è diventato comune molto più tardi."],steps:["Tritare lombo rosolato e salumi, poi unire parmigiano, uova e noce moscata.","Far riposare il ripieno in frigorifero.","Preparare una sfoglia molto sottile.","Tagliare quadrati di 3–4 cm, farcire, chiudere e unire le punte.","Cuocere in brodo di manzo e gallina o cappone."],note:"La tradizione è fortissima, ma non è mai stata immobile."},
+ {title:"Gnocchi medievali: prima delle patate",meta:"Ricette Storiche • manoscritto trecentesco",intro:"Gli gnocchi esistevano molto prima della patata. Una ricetta medievale conservata a Bologna usa solo formaggio fresco, tuorli e farina.",ingredients:["Per 4 persone: caprino o robiola 500 g","Tuorli 5","Farina 250 g","Parmigiano grattugiato per servire"],body:["La ricetta proviene da un manoscritto del Trecento. L'impasto era molto morbido e veniva porzionato direttamente nell'acqua bollente con il cucchiaio, senza la formatura degli gnocchi moderni.","Il risultato ricorda gli gnocchi alla fioretta dell'Alto Vicentino: un esempio sorprendente di una tecnica antica che continua a vivere in una cucina regionale."],steps:["Mescolare formaggio, tuorli e farina poco alla volta.","Formare quenelle con due cucchiai e farle cadere nell'acqua salata.","Quando salgono a galla, cuocere ancora circa 5 minuti.","Scolare delicatamente e finire con formaggio grattugiato."],note:"Una ricetta storica realmente riproducibile in cucina senza grandi complicazioni."},
+ {title:"Cannelloni: da moda nazionale a terreno di sperimentazione",meta:"Ricette Storiche • Bologna e Novecento",intro:"Negli anni Sessanta e Settanta i cannelloni erano quasi inevitabili nei ristoranti italiani, ma la loro forma moderna è molto più recente di ravioli e lasagne.",ingredients:["Vitello macinato 500 g","Sedano 1 costa, carota 1, cipolla piccola 1","Olio EVO 3 cucchiai","Vino bianco 1 bicchiere","Besciamella: latte 1 L, farina 50 g, burro 50 g","Ricotta vaccina 500 g","Parmigiano 100 g","Sfoglia: farina 300 g, uova 3","Ragù bolognese e parmigiano per finire"],body:["Nel Seicento esistevano già preparazioni chiamate cannelloni, ma potevano essere dolci fritti o involtini di carne. Nell'Ottocento compaiono paste ripiene più vicine al concetto moderno; nel 1910 si trovano ricette denominate cannelloni alla bolognese e alla siciliana.","La versione del ristorante Al Pappagallo di Bologna usa una farcia di ragù magro di vitello, ricotta, parmigiano e parte della besciamella. La sfoglia viene sbollentata, farcita, arrotolata e gratinata con altra besciamella, ragù e parmigiano."],steps:["Cuocere il ragù di vitello con verdure, vino ed erbe finché asciutto.","Preparare la besciamella e mescolarne una parte con ragù, ricotta e parmigiano.","Preparare e sbollentare la sfoglia.","Farcire e arrotolare.","Gratinare a circa 200 °C per una quindicina di minuti."],note:"La struttura è perfetta per prove creative perché la farcia può cambiare radicalmente."},
+ {title:"Nocino: Modena, San Giovanni e un'origine francese",meta:"Ricette Storiche • storia modenese",intro:"Il nocino è fortemente legato a Modena, ma la sua genealogia passa anche dai ratafià di noci francesi del Settecento.",ingredients:["Noci verdi non trattate 12","Grappa o brandy poco invecchiato 2 L","Zucchero 370 g","Acqua 340 cl","Cannella 1 pezzo","Semi di coriandolo 5–10"],body:["Le noci acerbe erano usate da secoli sia in cucina sia nella medicina tradizionale. Nel Cinquecento si trovano conserve di noci con zucchero o miele e spezie; nel 1760 compare in Francia un ratafià di noci, poi diffuso anche in Italia. Il nome nocino si afferma invece molto più tardi, all'inizio del Novecento.","La preparazione sfrutta noci ancora tenere, con il guscio non lignificato. L'infusione alcolica dura settimane; in seguito si aggiungono sciroppo e spezie, poi si lascia riposare di nuovo prima di filtrare e imbottigliare."],steps:["Tagliare a metà le noci e metterle nel vaso con grappa o brandy.","Lasciare al fresco e al buio per circa 6 settimane, muovendo ogni tanto il vaso.","Filtrare e unire acqua e zucchero sciolti e raffreddati.","Aggiungere cannella e coriandolo e lasciare riposare ancora circa un mese.","Filtrare nuovamente e imbottigliare."],note:"Perfetta per Franceschetta: modenese nell'identità, ma con una storia molto internazionale."},
+ {title:"Lagane: prima delle lasagne",meta:"Ricette Storiche • Roma antica",intro:"La parola lagana compare già nelle fonti romane e indica una sfoglia sottile, lontana antenata delle lasagne. Non sappiamo però se esistesse una sola versione.",ingredients:["Farina e acqua per una sfoglia semplice","Ceci","Porri","Erbe e condimenti secondo disponibilità"],body:["Nel De re coquinaria attribuito ad Apicio le lagane compaiono in preparazioni a strati con farce di carne, pesce, uova ed erbe. Alcuni dettagli fanno pensare che la sfoglia potesse cuocere direttamente grazie ai liquidi della farcia.","Orazio cita invece una cena semplice di porri, ceci e lagane. Non è certo se la lagana fosse pasta lessata, sfoglia cotta o pane sottile, ma il collegamento con le moderne lagane e ceci del Sud Italia è affascinante. Altre fonti romane descrivono le lagane come alimento morbido, compatibile con una pasta sottile bollita."],steps:["Per una reinterpretazione moderna, preparare una sfoglia semplice di farina e acqua.","Cuocere ceci e porri fino a ottenere una zuppa abbastanza densa.","Tagliare la sfoglia a pezzi irregolari e cuocerla nella zuppa o separatamente.","Finire con olio ed erbe aromatiche."],note:"È un ponte fra testi antichi e piatti che esistono ancora."}
+];
+
+function dailyEggContent(){
+ const day=daySerial();
+ const isGZ=day%2===0;
+ const pool=isGZ?DAILY_GZ:DAILY_HISTORY;
+ // Advance independently through each source, so alternating days don't repeat immediately.
+ const idx=Math.floor(day/2)%pool.length;
+ const x=pool[idx];
+ return {
+   ...x,
+   kind:isGZ?"Ricetta del giorno":"Ricetta storica / curiosità",
+   source:isGZ?"GialloZafferano":"Ricette Storiche"
+ };
+}
+function showDailyEgg(){
+ const c=dailyEggContent(),icon=dailyToolIcon();
+ const old=document.getElementById("eggOverlay");if(old)old.remove();
+ const el=document.createElement("div");el.id="eggOverlay";el.className="eggOverlay";
+ el.innerHTML=`<div class="eggModal"><div class="eggIcon">${icon}</div><small>${c.kind.toUpperCase()}</small><h2>${c.title}</h2><div class="miniTag" style="margin:4px 0 12px">${c.meta}</div>
+ <div class="eggBody"><p><strong>${c.intro||""}</strong></p>${(c.body||[]).map(p=>`<p>${p}</p>`).join("")}</div>
+ ${c.ingredients?.length?`<h3>Ingredienti / dosi</h3><div class="eggIngredients">${c.ingredients.map(x=>`<div class="eggIngredient">${x}</div>`).join("")}</div>`:""}
+ ${c.steps?.length?`<h3>Procedimento</h3><ol class="eggSteps">${c.steps.map(x=>`<li>${x}</li>`).join("")}</ol>`:""}
+ ${c.note?`<div class="card" style="padding:12px;margin-top:12px"><small>SPUNTO</small><div style="margin-top:4px">${c.note}</div></div>`:""}
+ <div class="eggSourceNote">Fonte di partenza: <strong>${c.source}</strong>. Testo rielaborato per l'app; dosi e dati tecnici vengono mantenuti quando utili, senza riprodurre integralmente la pagina originale.</div>
+ <button class="secondary" style="margin-top:12px" onclick="document.getElementById('eggOverlay').remove()">Chiudi</button></div>`;
+ el.onclick=e=>{if(e.target===el)el.remove()};document.body.appendChild(el);
+}
+
+/* DASHBOARD PERSONALIZZABILE — FIX V9.8.1 */
+function dashboardStorageKey(){
+ const who=currentUser?.uid||currentProfile?.name||"default";
+ return "f58v98_dashboard_"+String(who).replace(/[^a-z0-9_-]/gi,"_");
+}
+function defaultDashboardOrder(){
+ return Object.keys(sections);
+}
+function getDashboardOrder(){
+ let order=[];
+ try{
+   order=JSON.parse(localStorage.getItem(dashboardStorageKey()))||[];
+ }catch(e){}
+ order=order.filter(k=>sections[k]);
+ defaultDashboardOrder().forEach(k=>{
+   if(!order.includes(k))order.push(k);
+ });
+ return order;
+}
+function saveDashboardOrder(order){
+ localStorage.setItem(dashboardStorageKey(),JSON.stringify(order));
+}
+function toggleDashboardEdit(){
+ dashboardEditMode=!dashboardEditMode;
+ home();
+}
+function moveDashboardCard(key,delta){
+ const order=getDashboardOrder();
+ const i=order.indexOf(key);
+ const j=i+delta;
+ if(i<0||j<0||j>=order.length)return;
+ [order[i],order[j]]=[order[j],order[i]];
+ saveDashboardOrder(order);
+ home();
+}
+function resetDashboardOrder(){
+ localStorage.removeItem(dashboardStorageKey());
+ home();
+}
+function dashDragStart(ev,key){
+ if(!dashboardEditMode){
+   ev.preventDefault();
+   return;
+ }
+ dashboardDragKey=key;
+ try{ev.dataTransfer.setData("text/plain",key)}catch(e){}
+}
+function dashDrop(ev,target){
+ if(!dashboardEditMode)return;
+ ev.preventDefault();
+ const source=dashboardDragKey||ev.dataTransfer?.getData("text/plain");
+ if(!source||source===target)return;
+ const order=getDashboardOrder();
+ const from=order.indexOf(source);
+ const to=order.indexOf(target);
+ if(from<0||to<0)return;
+ order.splice(from,1);
+ order.splice(to,0,source);
+ saveDashboardOrder(order);
+ dashboardDragKey=null;
+ home();
+}
+function dashboardCardHtml(k,v){
+ const editing=dashboardEditMode;
+ const clickAction=editing ? "" : `openSection('${k}')`;
+ return `<div class="card nav"
+   data-key="${k}"
+   draggable="${editing}"
+   ondragstart="dashDragStart(event,'${k}')"
+   ondragover="${editing?"event.preventDefault()":""}"
+   ondrop="dashDrop(event,'${k}')"
+   onclick="${clickAction}">
+   <div class="ico">${v[0]}</div>
+   <div class="navSpacer"></div>
+   <strong>${v[1]}</strong>
+   <small>${v[2]}</small>
+   ${editing?`<div class="dashMove">
+     <button onclick="event.stopPropagation();moveDashboardCard('${k}',-1)" title="Sposta prima">↑</button>
+     <button onclick="event.stopPropagation();moveDashboardCard('${k}',1)" title="Sposta dopo">↓</button>
+   </div>`:""}
+ </div>`;
+}
+
+
+function stampMs(v){
+ if(!v)return 0;
+ if(typeof v==="number")return v;
+ if(v?.toMillis)return v.toMillis();
+ if(v?.seconds)return v.seconds*1000;
+ const n=Number(v);return Number.isFinite(n)?n:0;
+}
+function showToast(msg,ms=2600){
+ const old=document.getElementById("appToast");if(old)old.remove();
+ const t=document.createElement("div");t.id="appToast";t.className="toast";t.textContent=msg;
+ document.body.appendChild(t);setTimeout(()=>t.remove(),ms);
+}
+function isOrderManager(){return ["Vins","Tommy"].includes(currentProfile?.name)}
+function tomorrowEvents(){
+ const tk=tomorrowKey();
+ return events.filter(e=>e.date===tk);
+}
+function unsentTomorrowSupplierGroups(){
+ if(!isOrderManager())return [];
+ const date=tomorrowKey();
+ const rows=orders.filter(o=>o.deliveryDate===date);
+ return SUPPLIERS.map(s=>{
+   const rr=rows.filter(o=>o.supplier===s);
+   if(!rr.length)return null;
+   const sent=rr.every(o=>o.sentAt);
+   return sent?null:{supplier:s,count:rr.length};
+ }).filter(Boolean);
+}
+function getInternalNotifications(){
+ const list=[];
+ tomorrowEvents().forEach(e=>list.push({
+   type:"event",
+   title:`Domani: ${e.name}`,
+   text:`${e.covers||0} coperti${e.time?` • ore ${e.time}`:""}`,
+   target:"eventi"
+ }));
+ const pending=unsentTomorrowSupplierGroups();
+ if(pending.length){
+   list.push({
+     type:"orders",
+     title:`${pending.length} ${pending.length===1?"ordine":"ordini"} di domani da inviare`,
+     text:pending.map(x=>x.supplier).join(", ")+" • entro mezzanotte",
+     target:"fornitori"
+   });
+ }
+ return list;
+}
+function updateNotificationBadge(){
+ const btn=document.getElementById("notificationBtn"),badge=document.getElementById("notificationBadge");
+ if(!btn||!badge)return;
+ const n=getInternalNotifications().length;
+ badge.textContent=n;badge.style.display=n?"flex":"none";
+}
+function toggleNotificationPanel(){
+ const old=document.getElementById("noticePanel");
+ if(old){old.remove();notificationPanelOpen=false;return}
+ notificationPanelOpen=true;
+ const list=getInternalNotifications();
+ const p=document.createElement("div");p.id="noticePanel";p.className="noticePanel";
+ p.innerHTML=`<div class="row"><div><strong>Notifiche personali</strong><div class="muted">Solo dentro l'app, niente vibrazioni.</div></div><button class="secondary" onclick="toggleNotificationPanel()">×</button></div>
+ ${list.length?list.map(n=>`<div class="noticeItem" onclick="toggleNotificationPanel();openSection('${n.target}')" style="cursor:pointer"><div><span class="noticeDot"></span><strong>${n.title}</strong></div><div class="muted" style="margin-top:4px">${n.text}</div></div>`).join(""):'<div class="noticeItem muted">Niente da segnalare.</div>'}`;
+ document.body.appendChild(p);
+}
+function globalSearchData(q){
+ q=String(q||"").trim().toLowerCase();if(q.length<2)return [];
+ const hit=(v)=>String(v??"").toLowerCase().includes(q);
+ const res=[];
+ tasks.forEach(x=>{if(hit(x.text)||hit(x.partita))res.push({type:"TO DO / Preparazione",title:x.text,sub:x.partita||"",target:"prep"})});
+ menuRecipes.forEach(x=>{if(hit(x.name)||hit((x.ingredients||[]).join(" "))||hit(x.recipe))res.push({type:"Ricetta",title:x.name,sub:(x.ingredients||[]).slice(0,5).join(", "),target:"ricette"})});
+ inventory.forEach(x=>{if(hit(x.name)||hit(x.location)||hit(x.station)||hit(x.category))res.push({type:"Magazzino",title:x.name,sub:`${x.qty||0} ${x.unit||""} • ${x.location||""}`,target:"magazzino"})});
+ orders.forEach(x=>{if(hit(x.item)||hit(x.supplier))res.push({type:"Ordine",title:x.item,sub:`${x.supplier} • ${fmtDate(x.deliveryDate)}`,target:"fornitori"})});
+ events.forEach(x=>{if(hit(x.name)||hit(x.note))res.push({type:x.type==="buyout"?"Buyout":"Evento",title:x.name,sub:`${fmtDate(x.date)} • ${x.covers||0} coperti`,target:"eventi"})});
+ menuIdeas.forEach(x=>{if(hit(x.title)||hit(x.text))res.push({type:"Menu & Idee",title:x.title||"Idea",sub:x.text||"",target:"menu"})});
+ teamProfiles.forEach(x=>{if(hit(x.name)||hit(x.station)||hit(x.favoriteDish)||hit(x.hatedIngredient))res.push({type:"Personale",title:x.name,sub:x.station||"",target:"personale"})});
+ meals.forEach(x=>{if(hit(x.lunch)||hit(x.dinner))res.push({type:"Staff Meal",title:fmtDate(x.date),sub:[x.lunch,x.dinner].filter(Boolean).join(" • "),target:"staffmeal"})});
+ return res.slice(0,40);
+}
+function openGlobalSearch(){
+ const q=document.getElementById("globalSearchInput")?.value||"";
+ renderGlobalSearch(q);
+}
+function renderGlobalSearch(q){
+ let overlay=document.getElementById("globalSearchOverlay");
+ if(!overlay){overlay=document.createElement("div");overlay.id="globalSearchOverlay";overlay.className="searchResults";document.body.appendChild(overlay)}
+ const results=globalSearchData(q);
+ overlay.innerHTML=`<div class="searchSheet"><div class="row"><div><h2 style="margin:0">Ricerca globale</h2><div class="muted">Ricette, magazzino, ordini, eventi, TO DO, staff e idee.</div></div><button class="secondary" onclick="closeGlobalSearch()">×</button></div>
+ <input id="globalSearchModalInput" value="${escapeHtml(q)}" placeholder="Cerca..." style="margin-top:12px" oninput="renderGlobalSearch(this.value)">
+ <div style="margin-top:10px">${q.trim().length<2?'<div class="muted">Scrivi almeno 2 lettere.</div>':results.length?results.map(r=>`<div class="searchResult" onclick="closeGlobalSearch();openSection('${r.target}')"><div class="resultType">${r.type}</div><strong>${escapeHtml(r.title)}</strong><div class="muted">${escapeHtml(r.sub||"")}</div></div>`).join(""):'<div class="muted">Nessun risultato.</div>'}</div></div>`;
+ overlay.onclick=e=>{if(e.target===overlay)closeGlobalSearch()};
+}
+function closeGlobalSearch(){document.getElementById("globalSearchOverlay")?.remove()}
+function ingredientAllergens(ingredients){
+ const text=(ingredients||[]).join(" ").toLowerCase();
+ const rules=[
+  ["Glutine",["farina","frumento","grano","semola","pasta","pane","pangrattato","orzo","segale","avena","farro"]],
+  ["Crostacei",["gamber","scamp","aragost","astice","granch"]],
+  ["Uova",["uovo","uova","tuorlo","albume","maionese"]],
+  ["Pesce",["pesce","acciuga","aringa","tonno","salmone","cefalo","baccal","merluzzo","spada"]],
+  ["Arachidi",["arachid"]],
+  ["Soia",["soia","miso","tofu","edamame"]],
+  ["Latte",["latte","burro","panna","formaggio","parmigiano","grana","ricotta","mascarpone","yogurt","mozzarella"]],
+  ["Frutta a guscio",["nocciol","mandorl","noce","noci","pistac","anacard","pecan"]],
+  ["Sedano",["sedano"]],
+  ["Senape",["senape"]],
+  ["Sesamo",["sesamo"]],
+  ["Solfiti",["solfiti","vino","aceto balsamico"]],
+  ["Lupini",["lupin"]],
+  ["Molluschi",["vongol","cozza","polpo","seppia","calamar","ostrica","lumaca"]]
+ ];
+ return rules.filter(([_,keys])=>keys.some(k=>text.includes(k))).map(x=>x[0]);
+}
+function recipeAllergens(r){
+ const auto=ingredientAllergens(r.ingredients||[]);
+ const manual=Array.isArray(r.manualAllergens)?r.manualAllergens:[];
+ return [...new Set([...auto,...manual])];
+}
+function home(){
+ setPage("home");logoutBtn.style.display="block";const cub=document.getElementById("changeUserBtn");if(cub)cub.style.display="block";const nb=document.getElementById("notificationBtn");if(nb)nb.style.display="block";updateNotificationBadge();
+ const tk=todayKey();
+ const dailyTasks=tasks.filter(t=>t.type==="comune"&&!t.done&&(t.dueDate===tk||isLegacyTodayTask(t)));
+ const weeklyToday=weeklyPlan.filter(w=>w.date===tk&&!w.done);
+ const low=inventory.filter(x=>x.kind==="pantry"&&num(x.qty)<=num(x.lowAt??1)),next=nextEvent();
+ const order=getDashboardOrder(),cards=order.map(k=>dashboardCardHtml(k,sections[k])).join("");
+ const todoCount=dailyTasks.length+weeklyToday.length;
+ app.innerHTML=`<div class="todoHome card"><h3>TO DO</h3><div class="todayDate">${fullDateIT(new Date())}</div>
+ ${canStaff()?`<div class="todoQuickAdd"><input id="homeTodoText" placeholder="Aggiungi una cosa da fare oggi..."><button onclick="addHomeTodo()">+ Aggiungi TO DO</button></div>`:""}
+ <div class="list">${dailyTasks.map(taskHtml).join("")}${weeklyToday.map(weeklyHomeHtml).join("")}${todoCount===0?'<div class="muted">Niente da fare oggi.</div>':""}</div></div>
+ <div class="globalSearchBox"><div class="searchGlass">🔎</div><input id="globalSearchInput" placeholder="Cerca in tutta l'app..." onkeydown="if(event.key==='Enter')openGlobalSearch()"><button onclick="openGlobalSearch()">Cerca</button></div>
+ <div class="hero"><button class="secondary dashPersonalize" onclick="toggleDashboardEdit()">${dashboardEditMode?"✓ Fine":"↕ Personalizza"}</button>
+ <h2>IN<br>CUCINA</h2><p>${currentProfile.name} • ${roleLabel()} • ${onlineMode?"ONLINE":"DEMO"}</p>
+ <div class="quick"><div><small>TO DO oggi</small><strong>${todoCount}</strong></div><div><small>Dispensa bassa</small><strong>${low.length}</strong></div><div><small>Prossimo evento</small><strong>${next?next.covers+" cop.":"—"}</strong></div><div><small>Countdown</small><strong style="font-size:14px">${next?countdownText(next):"—"}</strong></div></div></div>
+ ${dashboardEditMode?`<div class="dashboardEditBar"><div class="muted">Trascina le caselle oppure usa ↑ ↓. L'ordine viene salvato per ${currentProfile.name}.</div><button class="secondary" onclick="resetDashboardOrder()">Ripristina ordine</button></div>`:""}
+ <div class="grid dashboardGrid ${dashboardEditMode?"editing":""}">${cards}</div>
+ <button class="easterEgg" onclick="showDailyEgg()" title="Scopri il contenuto del giorno">${dailyToolIcon()}</button>`;
+}
+function weeklyHomeHtml(w){
+ return `<div class="task ${w.done?"done":""}"><div class="row"><div><strong>${w.text}</strong><div class="taskmeta">Programmazione settimanale • da ${w.author||"?"}</div></div><span class="status ${w.done?"green":"red"}">${w.done?"FATTO":"DA FARE"}</span></div><div class="actions"><button class="${w.done?"secondary":"good"}" onclick="toggleWeeklyItem('${w.id}')">${w.done?"Riapri":"Segna fatto"}</button></div></div>`;
+}
+async function addHomeTodo(){
+ if(!canStaff())return;
+ const input=document.getElementById("homeTodoText");
+ const text=input?.value.trim();if(!text)return;
+ const date=todayKey();
+ const data={type:"comune",partita:"TO DO",text,dueDate:date,due:fullDateIT(date),done:false,author:currentProfile.name,authorUid:currentUser.uid,createdAt:ts(),updatedAt:ts()};
+ if(onlineMode)await db.collection("preparations").add(data);
+ else{tasks.unshift({id:"p"+Date.now(),...data});saveDemo();home()}
+}
+function openSection(k){if(k==="prep")prepPage();else if(k==="turni")shiftsPage();else if(k==="eventi")eventsPage();else if(k==="programmazione")weeklyPlanPage();else if(k==="magazzino")inventoryPage();else if(k==="fornitori")suppliersPage();else if(k==="staffmeal")staffMealPage();else if(k==="grembiuli")apronsPage();else if(k==="ricette")recipesPage();else if(k==="menu")menuIdeasPage();else if(k==="personale")personnelPage();else if(k==="allergeni")allergensPage();else placeholder(k)}
+function placeholder(k){setPage(k);const s=sections[k];app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div class="card"><h2>${s[1]}</h2><p class="muted">${s[2]}</p><p>Sezione da sviluppare nel prossimo giro.</p></div>`}
+
+
+
+/* PERSONALE */
+function personnelPage(){setPage("personale");app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="personnelRoot"></div>`;renderPersonnel()}
+function teamRoleLabel(r){return r==="admin"?"Responsabile":r==="intern"?"Stagista":"Brigata"}
+function canEditProfile(p){return isAdmin()||p.name===currentProfile?.name}
+function renderPersonnel(){
+ personnelRoot.innerHTML=`<div class="card"><h2>Personale</h2><div class="yellowRule"></div><p class="muted">La brigata in un colpo d'occhio. Allergie e intolleranze sono informazioni personali: inseritele solo se la persona vuole condividerle con il team.</p></div>
+ <div class="personGrid" style="margin-top:12px">${teamProfiles.map(p=>`<div class="card personCard">
+   <div class="row"><div style="display:flex;gap:10px;align-items:center"><div class="personAvatar">${escapeHtml((p.name||"?").slice(0,2).toUpperCase())}</div><div><strong>${escapeHtml(p.name)}</strong><div class="muted">${teamRoleLabel(p.role)} • ${escapeHtml(p.station||"Partita da definire")}</div></div></div>${canEditProfile(p)?`<button class="secondary" onclick="editPersonnel('${p.id}')">Modifica</button>`:""}</div>
+   <div class="profileDetails">
+    <div><small>Piatto preferito</small><strong>${escapeHtml(p.favoriteDish||"—")}</strong></div>
+    <div><small>Ingrediente che odia</small><strong>${escapeHtml(p.hatedIngredient||"—")}</strong></div>
+    <div><small>Allergie dichiarate</small><strong>${escapeHtml(p.allergies||"—")}</strong></div>
+    <div><small>Intolleranze dichiarate</small><strong>${escapeHtml(p.intolerances||"—")}</strong></div>
+   </div>
+   ${p.notes?`<div class="sensitiveNote">${escapeHtml(p.notes)}</div>`:""}
+ </div>`).join("")}</div>`;
+}
+function editPersonnel(id){
+ const p=teamProfiles.find(x=>x.id===id);if(!p||!canEditProfile(p))return;
+ personnelRoot.innerHTML=`<button class="back" onclick="renderPersonnel()">← Personale</button><div class="card"><h2>${escapeHtml(p.name)}</h2><div class="formgrid">
+ <div><small>Ruolo / partita</small><input id="pfStation" value="${escapeHtml(p.station||"")}"></div>
+ <div><small>Piatto preferito</small><input id="pfFav" value="${escapeHtml(p.favoriteDish||"")}"></div>
+ <div><small>Ingrediente che odia</small><input id="pfHate" value="${escapeHtml(p.hatedIngredient||"")}"></div>
+ <div><small>Allergie dichiarate</small><input id="pfAll" value="${escapeHtml(p.allergies||"")}"></div>
+ <div><small>Intolleranze dichiarate</small><input id="pfInt" value="${escapeHtml(p.intolerances||"")}"></div>
+ <div class="full"><small>Nota facoltativa</small><textarea id="pfNotes" rows="3">${escapeHtml(p.notes||"")}</textarea></div>
+ <div><button onclick="savePersonnel('${p.id}')">Salva profilo</button></div></div></div>`;
+}
+async function savePersonnel(id){
+ const p=teamProfiles.find(x=>x.id===id);if(!p||!canEditProfile(p))return;
+ const patch={station:pfStation.value.trim(),favoriteDish:pfFav.value.trim(),hatedIngredient:pfHate.value.trim(),allergies:pfAll.value.trim(),intolerances:pfInt.value.trim(),notes:pfNotes.value.trim(),updatedBy:currentProfile.name,updatedAt:ts()};
+ if(onlineMode)await db.collection("teamProfiles").doc(id).set({...p,...patch},{merge:true});
+ else{Object.assign(p,patch);saveDemo();renderPersonnel()}
+}
+
+/* NUOVO MENU & IDEE */
+function menuIdeasPage(){setPage("menu");app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="menuIdeasRoot"></div>`;renderMenuIdeas()}
+function ideaTypeLabel(t){return t==="feedback"?"Commento su un piatto":t==="test"?"Prova / test":"Idea"}
+function canDeleteIdea(x){return isAdmin()||x.authorUid===currentUser?.uid||x.author===currentProfile?.name}
+function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function renderMenuIdeas(){
+ const sorted=[...menuIdeas].sort((a,b)=>num(b.createdMs||b.createdAt)-num(a.createdMs||a.createdAt));
+ menuIdeasRoot.innerHTML=`<div class="card"><h2>Nuovo menu & idee</h2><p class="muted">Uno spazio libero della brigata: idee, prove, piatti che sono piaciuti, cose da cambiare o appunti da non perdere.</p></div>
+ <h3 class="sectionTitle">Scrivi qualcosa</h3><div class="card"><div class="formgrid">
+ <div><select id="ideaType"><option value="idea">Idea</option><option value="feedback">Commento su un piatto</option><option value="test">Prova / test</option></select></div>
+ <div><input id="ideaTitle" placeholder="Titolo, piatto o argomento"></div>
+ <div class="full voiceField"><textarea id="ideaText" rows="4" placeholder="Scrivi liberamente..."></textarea><button class="voiceBtn" onclick="startDictation('ideaText',this)">🎙️ Detta</button></div>
+ <div><button onclick="addMenuIdea()">Pubblica</button></div></div></div>
+ <h3 class="sectionTitle">Bacheca</h3><div class="ideaFeed">${sorted.map(x=>`<div class="card ideaPost ${x.type||"idea"}"><div class="row"><div><div class="ideaType">${ideaTypeLabel(x.type)}</div><strong>${escapeHtml(x.title||"Senza titolo")}</strong></div><small>${escapeHtml(x.author||"?")}</small></div><div class="ideaText">${escapeHtml(x.text||"")}</div>${canDeleteIdea(x)?`<div class="actions"><button class="danger" onclick="deleteMenuIdea('${x.id}')">Elimina</button></div>`:""}</div>`).join("")||'<div class="card muted">Ancora nessuna idea.</div>'}</div>`;
+}
+async function addMenuIdea(){
+ const title=ideaTitle.value.trim(),text=ideaText.value.trim();if(!title&&!text)return alert("Scrivi almeno un titolo o un testo.");
+ const data={type:ideaType.value,title,text,author:currentProfile.name,authorUid:currentUser.uid,createdAt:ts(),createdMs:Date.now()};
+ if(onlineMode)await db.collection("menuIdeas").add(data);else{menuIdeas.unshift({id:"mi"+Date.now(),...data,createdAt:Date.now()});saveDemo();renderMenuIdeas()}
+}
+async function deleteMenuIdea(id){
+ const x=menuIdeas.find(v=>v.id===id);if(!x||!canDeleteIdea(x))return;
+ if(onlineMode)await db.collection("menuIdeas").doc(id).delete();else{menuIdeas=menuIdeas.filter(v=>v.id!==id);saveDemo();renderMenuIdeas()}
+}
+
+/* PREPARAZIONI */
+function taskHtml(t){
+ const when=t.dueDate?fullDateIT(t.dueDate):(t.due||"—");
+ return `<div class="task ${t.done?"done":""}"><div class="row"><div><strong>${t.text}</strong><div class="taskmeta">Per: ${when} • da ${t.author||"?"}${t.completedBy?` • fatto da ${t.completedBy}`:""}</div></div><span class="status ${t.done?"green":"red"}">${t.done?"FATTO":"DA FARE"}</span></div><div class="actions"><button class="${t.done?"secondary":"good"}" onclick="toggleTask('${t.id}')">${t.done?"Riapri":"Segna fatto"}</button>${canStaff()?`<button class="danger" onclick="deleteTask('${t.id}')">Elimina</button>`:""}</div></div>`;
+}
+function prepPage(){setPage("prep");app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="prepRoot"></div>`;renderPrep()}
+function renderPrep(){
+ const tk=todayKey();
+ prepRoot.innerHTML=`<div class="card"><h2>Preparazioni</h2><p class="muted">DA FARE / FATTO. I TO DO sono legati a un giorno preciso.</p></div>
+ ${canStaff()?`<h3 class="sectionTitle">Aggiungi</h3><div class="card"><div class="formgrid"><div><select id="taskType"><option value="comune">TO DO</option><option value="partita">Di partita</option></select></div><div><select id="taskPartita">${["Primi","Antipasti","Secondi","Dolci","Banco"].map(x=>`<option>${x}</option>`).join("")}</select></div><div class="full"><textarea id="taskText" rows="2" placeholder="Cosa c'è da fare"></textarea></div><div><small>Giorno</small><input id="taskDate" type="date" value="${tk}"></div><div style="display:flex;align-items:end"><button onclick="addTask()">Aggiungi</button></div></div></div>`:""}
+ <h3 class="sectionTitle">TO DO</h3><div class="list">${tasks.filter(t=>t.type==="comune").sort((a,b)=>String(a.dueDate||"").localeCompare(String(b.dueDate||""))).map(taskHtml).join("")||'<div class="card muted">Nessuno.</div>'}</div>
+ <h3 class="sectionTitle">Servizio</h3><div class="tabs">${["Primi","Antipasti","Secondi","Dolci","Banco"].map(p=>`<button class="tab ${currentPartita===p?"active":""}" onclick="currentPartita='${p}';renderPrep()">${p}</button>`).join("")}</div><div class="card"><div class="list">${tasks.filter(t=>t.type==="partita"&&t.partita===currentPartita).map(taskHtml).join("")||'<div class="muted">Nessuna consegna.</div>'}</div></div>`;
+}
+async function addTask(){
+ if(!canStaff())return;
+ const type=taskType.value,text=taskText.value.trim();if(!text)return alert("Scrivi la preparazione.");
+ const date=taskDate.value||todayKey();
+ const data={type,partita:type==="comune"?"TO DO":taskPartita.value,text,dueDate:date,due:fullDateIT(date),done:false,author:currentProfile.name,authorUid:currentUser.uid,createdAt:ts(),updatedAt:ts()};
+ if(onlineMode)await db.collection("preparations").add(data);else{tasks.unshift({id:"p"+Date.now(),...data});saveDemo();renderPrep()}
+}
+async function toggleTask(id){const t=tasks.find(x=>x.id===id);if(!t)return;const done=!t.done,patch={done,completedBy:done?currentProfile.name:"",completedByUid:done?currentUser.uid:"",completedAt:done?ts():null,updatedAt:ts()};if(onlineMode)await db.collection("preparations").doc(id).update(patch);else{Object.assign(t,patch);saveDemo();refreshCurrent()}}
+async function deleteTask(id){if(!canStaff())return;if(onlineMode)await db.collection("preparations").doc(id).delete();else{tasks=tasks.filter(x=>x.id!==id);saveDemo();renderPrep()}}
+
+/* TURNI */
+function shiftsPage(){setPage("turni");app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="shiftRoot"></div>`;renderShifts()}
+function monthNameIT(d){return d.toLocaleDateString("it-IT",{month:"long",year:"numeric"})}
+function isoDate(y,m,d){return `${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`}
+function changeShiftMonth(n){shiftMonthCursor=new Date(shiftMonthCursor.getFullYear(),shiftMonthCursor.getMonth()+n,1);renderShifts()}
+function renderShifts(){
+ const y=shiftMonthCursor.getFullYear(),m=shiftMonthCursor.getMonth(),first=new Date(y,m,1),dim=new Date(y,m+1,0).getDate(),offset=(first.getDay()+6)%7;let cells="";for(let i=0;i<offset;i++)cells+='<div class="dayCell empty"></div>';
+ for(let d=1;d<=dim;d++){const k=isoDate(y,m,d),r=shifts.filter(x=>x.date===k);cells+=`<div class="dayCell"><div class="dayNum">${d}</div>${r.filter(x=>x.offType==="full").map(x=>`<span class="personChip full shiftLong">${x.name} • OFF tutto il giorno</span>`).join("")}${r.filter(x=>x.offType==="am").map(x=>`<span class="personChip am shiftLong">${x.name} • OFF la mattina</span>`).join("")}${r.filter(x=>x.offType==="pm").map(x=>`<span class="personChip pm shiftLong">${x.name} • OFF il pomeriggio</span>`).join("")}</div>`}
+ shiftRoot.innerHTML=`<div class="card"><h2>Turni</h2><p class="muted">Calendario mensile dei riposi.</p></div>${isAdmin()?`<h3 class="sectionTitle">Aggiungi riposo</h3><div class="card"><div class="formgrid"><div><input id="shDate" type="date"></div><div><select id="shName">${CREW_NAMES.map(x=>`<option>${x}</option>`).join("")}</select></div><div><select id="shType"><option value="full">OFF tutto il giorno</option><option value="am">OFF la mattina</option><option value="pm">OFF il pomeriggio</option></select></div><div><button onclick="addShift()">Aggiungi</button></div></div></div><h3 class="sectionTitle">Importa foto</h3><div class="card photoBox"><input type="file" accept="image/*" onchange="handleShiftPhoto(this)">${shiftPhotoDataUrl?`<img src="${shiftPhotoDataUrl}">`:""}<p class="muted">La foto resta come riferimento. La lettura automatica di foto arbitrarie verrà collegata nella versione online.</p></div>`:""}<div class="monthToolbar"><button class="secondary" onclick="changeShiftMonth(-1)">←</button><h3>${monthNameIT(shiftMonthCursor)}</h3><button class="secondary" onclick="changeShiftMonth(1)">→</button></div><div class="calendarWrap"><div class="monthGrid">${["Lun","Mar","Mer","Gio","Ven","Sab","Dom"].map(x=>`<div class="weekday">${x}</div>`).join("")}${cells}</div></div>`;
+}
+function handleShiftPhoto(i){const f=i.files?.[0];if(!f)return;const r=new FileReader();r.onload=e=>{shiftPhotoDataUrl=e.target.result;renderShifts()};r.readAsDataURL(f)}
+async function addShift(){if(!isAdmin())return;const data={date:shDate.value,name:shName.value,offType:shType.value};if(!data.date)return;if(onlineMode)await db.collection("shifts").add(data);else{shifts.push({id:"s"+Date.now(),...data});saveDemo();renderShifts()}}
+
+/* EVENTI / BUYOUT */
+function nextEvent(){const now=new Date(),future=events.filter(e=>new Date(`${e.date}T${e.time||"00:00"}`)>=now).sort((a,b)=>new Date(`${a.date}T${a.time||"00:00"}`)-new Date(`${b.date}T${b.time||"00:00"}`));return future[0]||null}
+function countdownText(e){const diff=new Date(`${e.date}T${e.time||"00:00"}`)-new Date();if(diff<=0)return "OGGI";const days=Math.floor(diff/86400000),hrs=Math.floor((diff%86400000)/3600000);return days>0?`${days}g ${hrs}h`:`${hrs}h`}
+function eventsPage(){setPage("eventi");app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="eventRoot"></div>`;renderEvents()}
+function renderEvents(){
+ const n=nextEvent(),fuori=events.filter(e=>(e.type||"evento")==="evento").sort((a,b)=>String(a.date).localeCompare(String(b.date))),buy=events.filter(e=>e.type==="buyout").sort((a,b)=>String(a.date).localeCompare(String(b.date)));
+ eventRoot.innerHTML=`<div class="card"><h2>Eventi & Buyout</h2>${n?`<div class="countdownBox">${countdownText(n)}</div><div class="muted">al prossimo: ${n.name} • ${fmtDate(n.date)} ${n.time||""}</div>`:'<p class="muted">Nessun evento futuro.</p>'}</div>${isAdmin()?`<h3 class="sectionTitle">Nuovo</h3><div class="card"><div class="formgrid"><div><select id="evType"><option value="evento">Evento fuori sede</option><option value="buyout">Buyout in ristorante</option></select></div><div><input id="evName" placeholder="Nome"></div><div><input id="evDate" type="date"></div><div><input id="evTime" type="time" value="20:00"></div><div><input id="evCovers" type="number" value="40" placeholder="Coperti"></div><div class="full"><textarea id="evNotes" rows="2" placeholder="Note generali"></textarea></div><div><button onclick="addEvent()">Salva</button></div></div></div>`:""}<div class="eventSplit"><div><h3 class="sectionTitle">Eventi fuori sede</h3><div class="list">${fuori.map(eventCard).join("")||'<div class="card muted">Nessun evento.</div>'}</div></div><div><h3 class="sectionTitle">Buyout</h3><div class="list">${buy.map(eventCard).join("")||'<div class="card muted">Nessun buyout.</div>'}</div></div></div>`;
+}
+function eventCard(e){const pp=eventPreps.filter(p=>p.eventId===e.id),done=pp.filter(p=>p.done).length,pct=pp.length?Math.round(done/pp.length*100):0;return `<div class="card ${e.type==="buyout"?"buyoutCard":"eventOutCard"}"><div class="row"><div><strong>${e.name}</strong><div class="muted">${fmtDate(e.date)} • ${e.time||""} • ${e.covers||0} coperti</div></div><span class="status blue">${countdownText(e)}</span></div><p>${e.notes||""}</p><div class="row"><small>Preparazioni ${done}/${pp.length}</small><small>${pct}%</small></div><div class="progressBar"><i style="width:${pct}%"></i></div><div class="actions"><button onclick="eventDetailPage('${e.id}')">Apri</button>${isAdmin()?`<button class="danger" onclick="deleteEvent('${e.id}')">Elimina</button>`:""}</div></div>`}
+async function addEvent(){if(!isAdmin())return;const data={type:evType.value,name:evName.value.trim(),date:evDate.value,time:evTime.value,covers:num(evCovers.value),notes:evNotes.value.trim(),createdAt:ts()};if(!data.name||!data.date)return alert("Nome e data obbligatori.");if(onlineMode)await db.collection("events").add(data);else{events.push({id:"e"+Date.now(),...data});saveDemo();renderEvents()}}
+async function deleteEvent(id){if(!isAdmin())return;if(onlineMode)await db.collection("events").doc(id).delete();else{events=events.filter(x=>x.id!==id);eventPreps=eventPreps.filter(x=>x.eventId!==id);saveDemo();renderEvents()}}
+function eventDetailPage(id){setPage("event:"+id);app.innerHTML=`<button class="back" onclick="eventsPage()">← EVENTI</button><div id="eventDetailRoot"></div>`;renderEventDetail(id)}
+function renderEventDetail(id){
+ const e=events.find(x=>x.id===id);if(!e){eventsPage();return}
+ const pp=eventPreps.filter(p=>p.eventId===id);
+ const gear=eventGear.filter(g=>g.eventId===id);
+ eventDetailRoot.innerHTML=`<div class="card"><div class="row"><div><h2 style="margin:0">${e.name}</h2><div class="muted">${e.type==="buyout"?"BUYOUT":"EVENTO FUORI SEDE"} • ${fmtDate(e.date)} ${e.time||""} • ${e.covers||0} coperti</div></div><div class="countdownBox">${countdownText(e)}</div></div></div>
+ ${canStaff()?`<h3 class="sectionTitle">Aggiungi preparazione</h3><div class="card"><div class="formgrid"><div class="full"><input id="epName" placeholder="Preparazione"></div><div><input id="epQty" type="number" step="0.1" placeholder="Quantità"></div><div><select id="epUnit">${["kg","L","porzioni","pz","vaschette","buste"].map(x=>`<option>${x}</option>`).join("")}</select></div><div class="full"><textarea id="epNote" rows="2" placeholder="Nota"></textarea></div><div><button onclick="addEventPrep('${id}')">Aggiungi</button></div></div></div>`:""}
+ <h3 class="sectionTitle">Preparazioni</h3><div class="list">${pp.map(p=>`<div class="task ${p.done?"done":""}"><div class="row"><div><strong>${p.name}</strong><div class="taskmeta">${p.qty||0} ${p.unit||""}${p.note?` • ${p.note}`:""}</div></div><span class="status ${p.done?"green":"red"}">${p.done?"FATTO":"DA FARE"}</span></div><div class="actions"><button class="${p.done?"secondary":"good"}" onclick="toggleEventPrep('${p.id}')">${p.done?"Riapri":"Segna fatto"}</button>${canStaff()?`<button class="danger" onclick="deleteEventPrep('${p.id}')">Elimina</button>`:""}</div></div>`).join("")||'<div class="card muted">Nessuna preparazione.</div>'}</div>
+ <h3 class="sectionTitle">Cosa portare</h3>
+ <div class="card gearCard">
+   <p class="muted">Attrezzature e materiale dell'evento, tutte in una lista unica.</p>
+   ${canStaff()?`<div class="formgrid"><div><input id="gearItem" placeholder="Es. carta, pentole, cucchiai"></div><div><input id="gearQty" placeholder="Quantità / numero"></div><div class="full"><input id="gearNote" placeholder="Nota facoltativa"></div><div><button onclick="addEventGear('${id}')">Aggiungi</button></div></div>`:""}
+   <div style="margin-top:12px">${gear.map(g=>`<div class="gearLine"><div class="row"><div><strong>${g.item}</strong><div class="taskmeta">${g.qty||""}${g.note?` • ${g.note}`:""}</div></div>${canStaff()?`<button class="danger" onclick="deleteEventGear('${g.id}')">Elimina</button>`:""}</div></div>`).join("")||'<div class="muted">Niente inserito.</div>'}</div>
+ </div>`;
+}
+async function addEventPrep(eventId){
+ if(!canStaff())return;
+ const data={eventId,name:epName.value.trim(),qty:num(epQty.value),unit:epUnit.value,note:epNote.value.trim(),done:false,author:currentProfile.name,authorUid:currentUser.uid,createdAt:ts()};
+ if(!data.name)return alert("Scrivi la preparazione.");
+ if(onlineMode)await db.collection("eventPreparations").add(data);else{eventPreps.push({id:"ep"+Date.now(),...data});saveDemo();renderEventDetail(eventId)}
+}
+async function addEventGear(eventId){
+ if(!canStaff())return;
+ const item=gearItem.value.trim();if(!item)return alert("Scrivi cosa portare.");
+ const data={eventId,item,qty:gearQty.value.trim(),note:gearNote.value.trim(),author:currentProfile.name,authorUid:currentUser.uid,createdAt:ts()};
+ if(onlineMode)await db.collection("eventEquipment").add(data);else{eventGear.push({id:"g"+Date.now(),...data});saveDemo();renderEventDetail(eventId)}
+}
+async function deleteEventGear(id){
+ if(!canStaff())return;const g=eventGear.find(x=>x.id===id);
+ if(onlineMode)await db.collection("eventEquipment").doc(id).delete();else{eventGear=eventGear.filter(x=>x.id!==id);saveDemo();renderEventDetail(g?.eventId)}
+}
+async function toggleEventPrep(id){const p=eventPreps.find(x=>x.id===id);if(!p)return;const patch={done:!p.done,completedBy:!p.done?currentProfile.name:"",updatedAt:ts()};if(onlineMode)await db.collection("eventPreparations").doc(id).update(patch);else{Object.assign(p,patch);saveDemo();renderEventDetail(p.eventId)}}
+async function deleteEventPrep(id){if(!canStaff())return;const p=eventPreps.find(x=>x.id===id);if(onlineMode)await db.collection("eventPreparations").doc(id).delete();else{eventPreps=eventPreps.filter(x=>x.id!==id);saveDemo();renderEventDetail(p?.eventId)}}
+
+
+
+/* ALLERGENI */
+function allergensPage(){setPage("allergeni");app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="allergenRoot"></div>`;renderAllergens()}
+function renderAllergens(){
+ allergenRoot.innerHTML=`<div class="card"><h2>Allergeni</h2><div class="yellowRule"></div><p class="muted">L'app legge gli ingredienti del ricettario e segnala gli allergeni probabili. È un aiuto operativo, non sostituisce il controllo dello chef sulle etichette e sulle contaminazioni.</p></div>
+ <div class="recipeGrid" style="margin-top:12px">${menuRecipes.map(r=>{const a=recipeAllergens(r);return `<div class="recipeCard"><h3>${escapeHtml(r.name)}</h3><div>${a.length?a.map(x=>`<span class="allergenPill">${x}</span>`).join(""):'<span class="allergenNone">Nessun allergene rilevato automaticamente</span>'}</div><div class="taskmeta" style="margin-top:10px">Da ingredienti: ${escapeHtml((r.ingredients||[]).join(", ")||"—")}</div></div>`}).join("")||'<div class="card muted">Inserisci prima le ricette.</div>'}</div>`;
+}
+
+/* PROGRAMMAZIONE SETTIMANALE */
+function weeklyPlanPage(){
+ setPage("programmazione");
+ app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="weeklyRoot"></div>`;
+ renderWeeklyPlan();
+}
+function changeWeek(n){weekCursor=addDays(weekCursor,n*7);renderWeeklyPlan()}
+function renderWeeklyPlan(){
+ const days=[0,1,2,3,4,5,6].map(n=>addDays(weekCursor,n));
+ const tk=todayKey();
+ weeklyRoot.innerHTML=`<div class="card"><h2>Programmazione settimanale</h2><p class="muted">La sera decidete insieme cosa produrre nei giorni successivi. La domenica è chiusa.</p></div>
+ <div class="monthToolbar"><button class="secondary" onclick="changeWeek(-1)">← Settimana prima</button><h3>${weekRangeLabel()}</h3><button class="secondary" onclick="changeWeek(1)">Settimana dopo →</button></div>
+ ${canStaff()?`<div class="card"><strong>Aggiungi alla settimana</strong><div class="formgrid" style="margin-top:10px"><div><input id="wpDate" type="date" value="${localDateKey(days[0])}"></div><div class="full"><input id="wpText" placeholder="Es. fare savoiardi / pelare patate / fare terrina"></div><div><button onclick="addWeeklyItem()">Aggiungi</button></div></div></div>`:""}
+ <div class="weekWrap" style="margin-top:12px"><div class="weekPlanner">
+   ${days.map((d,i)=>{
+      const key=localDateKey(d),isSunday=i===6,rows=weeklyPlan.filter(w=>w.date===key);
+      if(isSunday)return `<div class="weekDay closed"><h4>Domenica</h4><div class="weekDate">${shortDateIT(d)}</div><strong>CHIUSO</strong><small>Nessuna programmazione</small></div>`;
+      return `<div class="weekDay ${key===tk?"today":""}"><h4>${d.toLocaleDateString("it-IT",{weekday:"long"})}</h4><div class="weekDate">${shortDateIT(d)}</div>
+        ${rows.map(w=>`<div class="weekItem ${w.done?"done":""}"><strong>${w.text}</strong><div class="taskmeta">da ${w.author||"?"}</div><div class="actions"><button class="${w.done?"secondary":"good"}" onclick="toggleWeeklyItem('${w.id}')">${w.done?"Riapri":"Fatto"}</button>${canStaff()?`<button class="danger" onclick="deleteWeeklyItem('${w.id}')">×</button>`:""}</div></div>`).join("")||'<div class="muted">—</div>'}
+      </div>`;
+   }).join("")}
+ </div></div>`;
+}
+async function addWeeklyItem(){
+ if(!canStaff())return;
+ const date=wpDate.value,text=wpText.value.trim();if(!date||!text)return alert("Inserisci giorno e attività.");
+ const d=new Date(date+"T12:00:00");if(d.getDay()===0)return alert("La domenica Franceschetta è chiusa.");
+ const data={date,text,done:false,author:currentProfile.name,authorUid:currentUser.uid,createdAt:ts(),updatedAt:ts()};
+ if(onlineMode)await db.collection("weeklyPlan").add(data);else{weeklyPlan.push({id:"w"+Date.now(),...data});saveDemo();renderWeeklyPlan()}
+}
+async function toggleWeeklyItem(id){
+ const w=weeklyPlan.find(x=>x.id===id);if(!w)return;
+ const patch={done:!w.done,completedBy:!w.done?currentProfile.name:"",updatedAt:ts()};
+ if(onlineMode)await db.collection("weeklyPlan").doc(id).update(patch);else{Object.assign(w,patch);saveDemo();refreshCurrent()}
+}
+async function deleteWeeklyItem(id){
+ if(!canStaff())return;
+ if(onlineMode)await db.collection("weeklyPlan").doc(id).delete();else{weeklyPlan=weeklyPlan.filter(x=>x.id!==id);saveDemo();renderWeeklyPlan()}
+}
+
+/* MAGAZZINO */
+function inventoryPage(){setPage("magazzino");app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="inventoryRoot"></div>`;renderInventory()}
+function lowStock(x){return num(x.qty)<=num(x.lowAt??1)}
+function unitOptions(){return UNITS.map(x=>`<option>${x}</option>`).join("")}
+function renderInventory(){inventoryRoot.innerHTML=`<div class="card"><h2>Magazzino</h2><p class="muted">Inventari di partita, stoccaggio eventi e dispensa generale sono separati.</p></div><div class="stockTopTabs"><button class="${stockView==="station"?"active":""}" onclick="stockView='station';renderInventory()">Partite</button><button class="${stockView==="event"?"active":""}" onclick="stockView='event';renderInventory()">Stoccaggio eventi</button><button class="${stockView==="pantry"?"active":""}" onclick="stockView='pantry';renderInventory()">Dispensa</button></div>${stockView==="station"?renderStationInventory():stockView==="event"?renderEventStorage():renderPantry()}`}
+function renderStationInventory(){const rows=inventory.filter(x=>x.kind==="station"&&x.station===stockStation);return `<div class="subTabs">${STATIONS.map(s=>`<button class="${stockStation===s?"active":""}" onclick="stockStation='${s}';renderInventory()">${s}</button>`).join("")}</div>${canStaff()?`<div class="card"><strong>Aggiunta rapida — ${stockStation}</strong><div class="quickAdd" style="margin-top:10px"><input id="stName" placeholder="Preparazione"><input id="stQty" type="number" step="0.1" placeholder="Qtà"><select id="stUnit">${unitOptions()}</select><input id="stLoc" placeholder="Dove si trova"><button onclick="addStock('station')">+</button></div></div>`:""}<h3 class="sectionTitle">${stockStation}</h3><div class="list">${rows.map(stockRow).join("")||'<div class="card muted">Nessuna preparazione stoccata.</div>'}</div>`}
+function renderEventStorage(){const rows=inventory.filter(x=>x.kind==="event");return `${canStaff()?`<div class="card"><strong>Aggiungi stoccaggio evento</strong><div class="formgrid" style="margin-top:10px"><div><select id="esEvent">${events.map(e=>`<option value="${e.id}">${e.name}</option>`).join("")}</select></div><div><select id="esStation">${STATIONS.map(x=>`<option>${x}</option>`).join("")}</select></div><div><input id="esName" placeholder="Preparazione"></div><div><input id="esQty" type="number" step="0.1" placeholder="Qtà"></div><div><select id="esUnit">${unitOptions()}</select></div><div><input id="esLoc" placeholder="Dove si trova"></div><div><button onclick="addStock('event')">Aggiungi</button></div></div></div>`:""}<h3 class="sectionTitle">Preparazioni stoccate per eventi</h3><div class="list">${rows.map(x=>{const e=events.find(v=>v.id===x.eventId);return `<div class="card ${lowStock(x)?"stockRow low":"stockRow"}"><div class="row"><div><strong>${x.name}${lowStock(x)?'<span class="redDot"></span>':""}</strong><div class="muted">${e?.name||"Evento"} • ${x.station||""} • ${x.location||"—"}</div></div><div class="qtyBig">${x.qty} ${x.unit}</div></div>${canStaff()?stockAdjust(x):""}</div>`}).join("")||'<div class="card muted">Nessuno stoccaggio evento.</div>'}</div>`}
+function renderPantry(){const rows=inventory.filter(x=>x.kind==="pantry"&&x.category===pantryCat);return `<div class="subTabs">${PANTRY_CATS.map(c=>`<button class="${pantryCat===c?"active":""}" onclick="pantryCat='${c}';renderInventory()">${c}</button>`).join("")}</div>${canStaff()?`<div class="card"><strong>Aggiunta rapida — ${pantryCat}</strong><div class="quickAdd" style="margin-top:10px"><input id="pnName" placeholder="Ingrediente"><input id="pnQty" type="number" step="0.1" placeholder="Qtà"><select id="pnUnit">${unitOptions()}</select><input id="pnLoc" value="Dispensa" placeholder="Dove"><button onclick="addStock('pantry')">+</button></div></div>`:""}<h3 class="sectionTitle">${pantryCat}</h3><p class="muted">Pallino rosso quando resta 1 unità o meno.</p><div class="list">${rows.map(stockRow).join("")||'<div class="card muted">Nessun prodotto.</div>'}</div>`}
+function stockRow(x){
+ return `<div class="card stockRow ${lowStock(x)?"low":""} ${x.useSoon?"useSoon":""}">
+ <div class="row"><div><strong>${escapeHtml(x.name)}${lowStock(x)?'<span class="redDot"></span>':""}</strong><div class="muted">${escapeHtml(x.location||"—")}</div></div>
+ <div style="text-align:right"><strong>${x.qty||0} ${escapeHtml(x.unit||"")}</strong>${x.useSoon?'<div><span class="useSoonBadge">DA USARE</span></div>':""}</div></div>
+ <div class="stockControls"><button onclick="changeStock('${x.id}',-1)">−1</button><input type="number" step="0.1" value="${x.qty||0}" onchange="setStock('${x.id}',this.value)"><button onclick="changeStock('${x.id}',1)">+1</button>${canStaff()?`<button class="secondary" onclick="toggleUseSoon('${x.id}')">${x.useSoon?"Togli DA USARE":"🍲 Da usare"}</button>`:""}</div></div>`;
+}
+async function toggleUseSoon(id){
+ const x=inventory.find(v=>v.id===id);if(!x||!canStaff())return;
+ const patch={useSoon:!x.useSoon,updatedAt:ts(),updatedBy:currentProfile.name};
+ if(onlineMode)await db.collection("inventory").doc(id).update(patch);else{Object.assign(x,patch);saveDemo();renderInventory()}
+}
+async function addStock(kind){if(!canStaff())return;let data;if(kind==="station")data={kind,station:stockStation,name:stName.value.trim(),qty:num(stQty.value),unit:stUnit.value,location:stLoc.value.trim(),lowAt:1};if(kind==="event")data={kind,eventId:esEvent.value,station:esStation.value,name:esName.value.trim(),qty:num(esQty.value),unit:esUnit.value,location:esLoc.value.trim(),lowAt:0};if(kind==="pantry")data={kind,category:pantryCat,name:pnName.value.trim(),qty:num(pnQty.value),unit:pnUnit.value,location:pnLoc.value.trim(),lowAt:1};if(!data.name)return alert("Scrivi il nome.");data.updatedAt=ts();data.updatedBy=currentProfile.name;if(onlineMode)await db.collection("inventory").add(data);else{inventory.push({id:"i"+Date.now(),...data});saveDemo();renderInventory()}}
+async function adjustStock(id,delta){const x=inventory.find(v=>v.id===id);if(!x)return;await updateStock(id,Math.max(0,num(x.qty)+delta))}
+async function setStock(id){await updateStock(id,num(document.getElementById("stk_"+id).value))}
+async function updateStock(id,qty){const patch={qty,updatedAt:ts(),updatedBy:currentProfile.name};if(onlineMode)await db.collection("inventory").doc(id).update(patch);else{Object.assign(inventory.find(x=>x.id===id),patch);saveDemo();renderInventory()}}
+async function deleteStock(id){if(!isAdmin())return;if(onlineMode)await db.collection("inventory").doc(id).delete();else{inventory=inventory.filter(x=>x.id!==id);saveDemo();renderInventory()}}
+
+
+function normalizeWhatsAppNumber(v){
+ return String(v||"").replace(/[^\d]/g,"");
+}
+function saveWhatsAppContacts(){
+ whatsappContacts={
+   Vins:normalizeWhatsAppNumber(document.getElementById("waVins")?.value),
+   Tommy:normalizeWhatsAppNumber(document.getElementById("waTommy")?.value)
+ };
+ localStorage.setItem("f58v93_whatsapp",JSON.stringify(whatsappContacts));localStorage.setItem("f58v95_recipes",JSON.stringify(menuRecipes));localStorage.setItem("f58v98_menuideas",JSON.stringify(menuIdeas));localStorage.setItem("f58v10_team",JSON.stringify(teamProfiles));
+ alert("Contatti WhatsApp salvati su questo dispositivo.");
+ renderSuppliers();
+}
+function supplierOrderMessage(supplier){
+ const rows=orders.filter(o=>o.deliveryDate===orderDateCursor&&o.supplier===supplier);
+ if(!rows.length)return "";
+ const date=fullDateIT(orderDateCursor);
+ const lines=rows.map(o=>`• ${o.item}${num(o.qty)>0?` — ${o.qty} ${o.unit||""}`:""}`);
+ return `ORDINE ${supplier.toUpperCase()}\nPer ${date}\n\n${lines.join("\n")}`;
+}
+function sendSupplierWhatsApp(supplier){
+ const msg=supplierOrderMessage(supplier);
+ if(!msg)return alert("Non c'è niente da inviare per questo fornitore.");
+ const sel=document.getElementById("waTo_"+supplier);
+ const recipient=sel?.value||"Vins";
+ const number=normalizeWhatsAppNumber(whatsappContacts[recipient]);
+ const url=number?`https://wa.me/${number}?text=${encodeURIComponent(msg)}`:`https://wa.me/?text=${encodeURIComponent(msg)}`;
+ if(!number)showToast(`Numero di ${recipient} non configurato: scegli il contatto in WhatsApp.`);
+ window.open(url,"_blank");
+}
+async function markSupplierOrderSent(supplier){
+ const rows=orders.filter(o=>o.deliveryDate===orderDateCursor&&o.supplier===supplier);
+ if(!rows.length)return;
+ const patch={sentAt:ts(),sentBy:currentProfile.name};
+ if(onlineMode){
+   const batch=db.batch();rows.forEach(o=>batch.update(db.collection("orders").doc(o.id),patch));await batch.commit();
+ }else{
+   rows.forEach(o=>Object.assign(o,{sentAt:Date.now(),sentBy:currentProfile.name}));saveDemo();renderSuppliers();updateNotificationBadge();
+ }
+ showToast(`Ordine ${supplier} segnato come inviato.`);
+}
+function orderBatchGroups(){
+ const map=new Map();
+ orders.forEach(o=>{
+   const key=`${o.deliveryDate}|${o.supplier}`;
+   if(!map.has(key))map.set(key,{date:o.deliveryDate,supplier:o.supplier,rows:[]});
+   map.get(key).rows.push(o);
+ });
+ return [...map.values()].sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+}
+function orderHistoryHtml(){
+ const groups=orderBatchGroups().filter(g=>g.rows.some(x=>x.sentAt)).slice(0,40);
+ return `<div class="card"><div class="row"><div><h2 style="margin:0">Storico ordini</h2><div class="muted">Ordini confermati come inviati.</div></div><button class="secondary" onclick="orderHistoryMode=false;renderSuppliers()">Torna agli ordini</button></div></div>
+ <div class="list" style="margin-top:12px">${groups.map(g=>{const sent=g.rows.find(x=>x.sentAt);return `<div class="card orderHistoryCard"><div class="row"><div><strong>${escapeHtml(g.supplier)}</strong><div class="muted">${fmtDate(g.date)}</div></div><div class="sentStamp">Inviato da ${escapeHtml(sent?.sentBy||"?")}</div></div><div style="margin-top:8px">${g.rows.map(x=>`<div class="orderLine"><div class="row"><span>${escapeHtml(x.item)}</span><strong>${x.qty||""} ${escapeHtml(x.unit||"")}</strong></div></div>`).join("")}</div></div>`}).join("")||'<div class="card muted">Nessun ordine inviato ancora.</div>'}</div>`;
+}
+
+/* FORNITORI */
+function suppliersPage(){setPage("fornitori");app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="supplierRoot"></div>`;renderSuppliers()}
+function renderSuppliers(){
+ if(orderHistoryMode){supplierRoot.innerHTML=orderHistoryHtml();return}
+ const rows=orders.filter(o=>o.deliveryDate===orderDateCursor);
+ supplierRoot.innerHTML=`<div class="card">
+   <div class="row"><div><h2 style="margin:0">Fornitori e ordini</h2><p class="muted">Compilate la lista durante la giornata. Per togliere il promemoria serale, Tommy o Vins confermano quando l'ordine è stato realmente inviato.</p></div><button class="secondary" onclick="orderHistoryMode=true;renderSuppliers()">🕘 Storico ordini</button></div>
+   <div style="margin-top:10px;max-width:220px"><input type="date" value="${orderDateCursor}" onchange="orderDateCursor=this.value;renderSuppliers()"></div>
+   ${isAdmin()?`<details class="contactSetup"><summary>Configura contatti WhatsApp</summary><div class="formgrid" style="margin-top:10px">
+   <div><small>Numero Vins</small><input id="waVins" inputmode="tel" placeholder="Es. 393331234567" value="${whatsappContacts.Vins||""}"></div>
+   <div><small>Numero Tommy</small><input id="waTommy" inputmode="tel" placeholder="Es. 393331234567" value="${whatsappContacts.Tommy||""}"></div>
+   <div class="full"><small>Inserire il prefisso internazionale, es. 39 per l'Italia.</small></div><div><button onclick="saveWhatsAppContacts()">Salva contatti</button></div></div></details>`:""}
+ </div>
+ <div class="supplierGrid" style="margin-top:12px">${SUPPLIERS.map(s=>{
+   const supplierRows=rows.filter(o=>o.supplier===s),sent=supplierRows.length&&supplierRows.every(o=>o.sentAt),sentInfo=supplierRows.find(o=>o.sentAt);
+   return `<div class="card supplierCard"><div class="supplierHead"><h3>${s}</h3><span class="status ${sent?"green":supplierRows.length?"red":"grey"}">${sent?"INVIATO":supplierRows.length?supplierRows.length+" voci":"vuoto"}</span></div>
+   <div class="quickAdd" style="grid-template-columns:2fr .8fr .8fr auto"><input id="oi_${s}" placeholder="Cosa ordinare"><input id="oq_${s}" type="number" step="0.1" placeholder="Qtà"><select id="ou_${s}">${ORDER_UNITS.map(u=>`<option>${u}</option>`).join("")}</select><button onclick="addOrder('${s}')">+</button></div>
+   <div style="margin-top:8px">${supplierRows.map(o=>`<div class="orderLine"><div class="row"><strong>${escapeHtml(o.item)}</strong><span>${o.qty||""} ${escapeHtml(o.unit||"")}</span></div><div class="taskmeta">da ${escapeHtml(o.author||"?")}</div></div>`).join("")||'<div class="muted">Niente da ordinare.</div>'}</div>
+   ${supplierRows.length?`<div class="waBar"><select id="waTo_${s}"><option value="Vins">Vins</option><option value="Tommy">Tommy</option></select><button class="waBtn" onclick="sendSupplierWhatsApp('${s}')">WhatsApp ordine</button>${isOrderManager()&&!sent?`<button class="good" onclick="markSupplierOrderSent('${s}')">✓ Conferma inviato</button>`:""}${sent?`<span class="sentStamp">✓ ${escapeHtml(sentInfo?.sentBy||"")}</span>`:""}</div>`:""}</div>`;
+ }).join("")}</div>`;
+}
+async function addOrder(supplier){
+ const item=document.getElementById("oi_"+supplier).value.trim();if(!item)return;
+ const data={supplier,item,qty:num(document.getElementById("oq_"+supplier).value),unit:document.getElementById("ou_"+supplier).value.trim()||"kg",deliveryDate:orderDateCursor,author:currentProfile.name,authorUid:currentUser.uid,createdAt:ts()};
+ if(onlineMode)await db.collection("orders").add(data);
+ else{orders.push({id:"o"+Date.now(),...data});saveDemo();renderSuppliers()}
+}
+
+/* GREMBIULI SPIN */
+function apronsPage(){setPage("grembiuli");app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="apronRoot"></div>`;renderAprons()}
+function apronCrew(){return CREW_NAMES}
+function renderAprons(){
+ const last=[...apronHistory].sort((a,b)=>num(b.createdMs||b.createdAt)-num(a.createdMs||a.createdAt))[0];
+ apronRoot.innerHTML=`<div class="card"><h2>Grembiuli Spin</h2><p class="muted">Estrazione casuale. Chi ha lavato i grembiuli l'ultima volta viene escluso dal giro successivo.</p></div>
+ <div class="card spinBox" style="margin-top:12px"><div class="spinWheel">🎰</div><small>ULTIMO TURNO</small><div class="spinName">${last?.name||"—"}</div>${canStaff()?`<button onclick="spinAprons()">Gira la ruota</button>`:""}</div>
+ <h3 class="sectionTitle">Storico</h3><div class="spinHistory">${[...apronHistory].reverse().map(h=>`<div class="card"><div class="row"><strong>${h.name}</strong><span class="status grey">${h.weekLabel||h.date||""}</span></div>${h.by?`<div class="taskmeta">estratto da ${h.by}</div>`:""}</div>`).join("")||'<div class="card muted">Nessuna estrazione ancora.</div>'}</div>`;
+}
+async function spinAprons(){
+ if(!canStaff())return;
+ const crew=apronCrew();
+ const sorted=[...apronHistory].sort((a,b)=>num(b.createdMs||b.createdAt)-num(a.createdMs||a.createdAt));
+ const last=sorted[0]?.name;
+ const pool=crew.filter(n=>n!==last);
+ const name=pool[Math.floor(Math.random()*pool.length)];
+ const ws=startOfWeek(new Date()),we=addDays(ws,6);
+ const data={name,date:todayKey(),weekLabel:`${shortDateIT(ws)} – ${shortDateIT(we)}`,by:currentProfile.name,createdMs:Date.now(),createdAt:ts()};
+ if(onlineMode)await db.collection("apronHistory").add(data);else{apronHistory.push({id:"a"+Date.now(),...data,createdAt:Date.now()});saveDemo();renderAprons()}
+}
+
+/* STAFF MEAL */
+function staffMealPage(){
+ setPage("staffmeal");
+ app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="mealRoot"></div>`;
+ renderMeals();
+}
+function changeMealWeek(n){mealWeekCursor=addDays(mealWeekCursor,n*7);renderMeals()}
+function mealForDate(date){return meals.find(m=>m.date===date)}
+function mealDays(){return [0,1,2,3,4,5].map(i=>addDays(mealWeekCursor,i))}
+function scrapsFromMenu(){
+ const out=[];menuRecipes.forEach(r=>(r.scraps||[]).forEach(s=>{if(s&&!out.some(x=>x.toLowerCase()===s.toLowerCase()))out.push(s)}));return out;
+}
+function ingredientsFromMenu(){
+ const out=[];menuRecipes.forEach(r=>(r.ingredients||[]).forEach(s=>{if(s&&!out.some(x=>x.toLowerCase()===s.toLowerCase()))out.push(s)}));return out;
+}
+function warehouseMealCandidates(){return inventory.filter(x=>x.useSoon&&num(x.qty)>0).map(x=>x.name)}
+function buildMealIdea(){
+ const scraps=scrapsFromMenu(),warehouse=warehouseMealCandidates(),ingredients=ingredientsFromMenu();
+ const sourcePool=[...warehouse,...scraps,...ingredients];
+ let key=sourcePool.length?sourcePool[hashText(todayKey()+currentProfile.name+Date.now())%sourcePool.length]:"";
+ const low=key.toLowerCase();let dish="",why="";
+ if(low.includes("faraona")){dish="Faraona in umido con piselli";why="Usa ritagli o scorte di faraona in una preparazione semplice."}
+ else if(low.includes("parmigiano")||low.includes("croste")){dish="Minestra di legumi con croste di Parmigiano";why="Le croste danno sapore a una minestra semplice."}
+ else if(low.includes("patat")){dish="Frittata di patate e cipolla";why="Funziona bene con ritagli o patate da utilizzare."}
+ else if(low.includes("pane")){dish="Pappa al pomodoro";why="Recupero semplice del pane con ingredienti di base."}
+ else if(low.includes("pesce")||low.includes("cefalo")){dish="Polpette di pesce con patate";why="Ritagli cotti di pesce possono diventare un impasto semplice."}
+ else if(low.includes("zucch")||low.includes("melanz")||low.includes("peper")||low.includes("verd")){dish="Frittata di verdure e ritagli";why="Assorbe bene piccole quantità di verdure."}
+ else if(low.includes("riso")){dish="Riso saltato con verdure e uovo";why="Piatto rapido per usare riso e piccole rimanenze."}
+ else if(low.includes("legum")||low.includes("ceci")||low.includes("fagiol")||low.includes("lentic")){dish="Zuppa di legumi con crostini";why="Staff meal economico e facile da produrre in quantità."}
+ else if(low){dish=`Teglia rustica con ${key}`;why="Idea semplice costruita a partire da una disponibilità reale della cucina."}
+ else{
+   const season=currentSeason();
+   dish={autunno:"Vellutata di zucca e patate",inverno:"Zuppa di cavolo e legumi",primavera:"Riso con piselli ed erbe",estate:"Pasta al pomodoro e verdure"}[season];
+   key=season;why="Idea stagionale semplice.";
+ }
+ generatedMealIdea={dish,source:key,why,fromWarehouse:warehouse.some(x=>x===key)};
+ renderMeals();
+}
+function mealEditorLoad(){
+ const date=document.getElementById("mealEditDate")?.value;
+ const slot=document.getElementById("mealEditSlot")?.value||"lunch";
+ const field=document.getElementById("mealEditText");
+ if(!date||!field)return;
+ const m=mealForDate(date);
+ field.value=(m?.[slot]||"");
+}
+function putIdeaInMealEditor(){
+ if(!generatedMealIdea)return;
+ const field=document.getElementById("mealEditText");
+ if(field){field.value=generatedMealIdea.dish;field.focus()}
+ showToast("Idea copiata nell'editor. Scegli giorno e pranzo/cena, poi premi Salva.",2800);
+}
+async function persistMealEntry(date,slot,text){
+ const existing=mealForDate(date);
+ const now=ts();
+ if(onlineMode){
+   try{
+     if(existing){
+       await db.collection("staffMeals").doc(existing.id).update({[slot]:text,updatedBy:currentProfile.name,updatedAt:now});
+       existing[slot]=text;existing.updatedBy=currentProfile.name;existing.updatedAt=now;
+     }else{
+       const data={date,lunch:"",dinner:"",author:currentProfile.name,authorUid:currentUser.uid,createdAt:now,updatedBy:currentProfile.name,updatedAt:now};
+       data[slot]=text;
+       const ref=await db.collection("staffMeals").add(data);
+       meals.push({id:ref.id,...data});
+     }
+   }catch(e){
+     console.error(e);
+     alert("Non sono riuscito a salvare lo Staff Meal. Riprova.");
+     return false;
+   }
+ }else{
+   if(existing){
+     existing[slot]=text;existing.updatedBy=currentProfile.name;existing.updatedAt=Date.now();
+   }else{
+     const data={id:"m"+Date.now(),date,lunch:"",dinner:"",author:currentProfile.name,authorUid:currentUser.uid,createdAt:Date.now(),updatedBy:currentProfile.name,updatedAt:Date.now()};
+     data[slot]=text;meals.push(data);
+   }
+   saveDemo();
+ }
+ return true;
+}
+async function saveMealFromEditor(){
+ if(!canEditMeals())return;
+ const date=document.getElementById("mealEditDate")?.value;
+ const slot=document.getElementById("mealEditSlot")?.value||"lunch";
+ const text=document.getElementById("mealEditText")?.value.trim()||"";
+ if(!date)return alert("Scegli il giorno.");
+ if(!text)return alert("Scrivi cosa si mangia.");
+ const ok=await persistMealEntry(date,slot,text);
+ if(ok){showToast("Staff Meal salvato.");renderMeals()}
+}
+async function useMealIdea(date,slot){
+ if(!generatedMealIdea)return;
+ const ok=await persistMealEntry(date,slot,generatedMealIdea.dish);
+ if(ok){showToast(`Salvato: ${generatedMealIdea.dish}`);renderMeals()}
+}
+function mealRow(d){
+ const date=localDateKey(d),m=mealForDate(date);
+ const lunch=m?.lunch||"",dinner=m?.dinner||"";
+ return `<tr>
+   <td class="dayCell"><div class="dayName">${d.toLocaleDateString("it-IT",{weekday:"long"})}</div><div class="weekDate">${shortDateIT(d)}</div></td>
+   <td><div class="${lunch?"mealRead":"mealEmpty"}">${escapeHtml(lunch||"—")}</div>${m?.updatedBy?`<div class="mealMeta">aggiornato da ${escapeHtml(m.updatedBy)}</div>`:""}</td>
+   <td><div class="${dinner?"mealRead":"mealEmpty"}">${escapeHtml(dinner||"—")}</div>${m?.updatedBy?`<div class="mealMeta">aggiornato da ${escapeHtml(m.updatedBy)}</div>`:""}</td>
+ </tr>`;
+}
+function renderMeals(){
+ const days=mealDays();
+ const firstDate=localDateKey(days[0]);
+ mealRoot.innerHTML=`<div class="card"><h2>Staff Meal</h2><div class="yellowRule"></div><p class="muted">Si modifica sopra; sotto la settimana resta pulita e solo da leggere.</p></div>
+ <div class="monthToolbar"><button class="secondary" onclick="changeMealWeek(-1)">←</button><h3>${shortDateIT(days[0])} – ${shortDateIT(days[5])}</h3><button class="secondary" onclick="changeMealWeek(1)">→</button></div>
+
+ <div class="card mealEditorCard">
+   <strong>Aggiungi / modifica Staff Meal</strong>
+   <div class="mealEditorGrid">
+     <div><small>Giorno</small><select id="mealEditDate" onchange="mealEditorLoad()">${days.map(d=>{const k=localDateKey(d);return `<option value="${k}">${d.toLocaleDateString("it-IT",{weekday:"long",day:"numeric",month:"short"})}</option>`}).join("")}</select></div>
+     <div><small>Servizio</small><select id="mealEditSlot" onchange="mealEditorLoad()"><option value="lunch">Pranzo</option><option value="dinner">Cena</option></select></div>
+     <div class="mealTextField"><small>Cosa si mangia</small><input id="mealEditText" placeholder="Es. faraona in umido con piselli"></div>
+     <button class="mealSaveBtn" onclick="saveMealFromEditor()">Salva</button>
+   </div>
+ </div>
+
+ <div class="card ideaCard" style="margin-top:12px">
+   <div class="row"><div><small>IDEA STAFF MEAL DA MENU / SCARTI / MAGAZZINO</small><div class="ideaDish">${generatedMealIdea?.dish||"Genera un'idea"}</div>${generatedMealIdea?`<div class="muted">Partenza: ${escapeHtml(generatedMealIdea.source)} • ${escapeHtml(generatedMealIdea.why)}</div>`:'<div class="muted">Usa gli ingredienti, gli scarti e le scorte segnate DA USARE.</div>'}</div><button onclick="buildMealIdea()">Genera idea</button></div>
+   ${generatedMealIdea?`<div class="ideaUseBar"><button onclick="putIdeaInMealEditor()">↓ Porta nell'editor</button><span class="muted">Oppure salvala subito:</span>${days.map(d=>{const k=localDateKey(d);return `<button class="secondary" onclick="useMealIdea('${k}','lunch')">${d.toLocaleDateString("it-IT",{weekday:"short"})} pranzo</button><button class="secondary" onclick="useMealIdea('${k}','dinner')">${d.toLocaleDateString("it-IT",{weekday:"short"})} cena</button>`}).join("")}</div>`:""}
+   <div class="smartStockList">${warehouseMealCandidates().length?warehouseMealCandidates().map(x=>`<span class="smartStockChip">📦 ${escapeHtml(x)} • DA USARE</span>`).join(""):'<span class="muted">Nel Magazzino puoi segnare le scorte “DA USARE” per farle entrare nelle proposte.</span>'}</div>
+ </div>
+
+ <h3 class="sectionTitle">Settimana</h3>
+ <div class="mealTableWrap"><table class="mealTable">
+   <thead><tr><th>Giorno</th><th>Pranzo</th><th>Cena</th></tr></thead>
+   <tbody>
+     ${days.map(mealRow).join("")}
+     <tr class="closedRow"><td class="dayCell"><div class="dayName">Domenica</div><div class="weekDate">${shortDateIT(addDays(mealWeekCursor,6))}</div></td><td colspan="2"><strong>CHIUSO</strong></td></tr>
+   </tbody>
+ </table></div>`;
+ mealEditorLoad();
+}
+
+let activeRecognition=null;
+function startDictation(targetId,button){
+ const target=document.getElementById(targetId);if(!target)return;
+ target.focus();
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!SR){
+   showToast("Qui la dettatura diretta non è disponibile: usa il 🎙️ della tastiera Android nel campo appena aperto.",4200);
+   return;
+ }
+ if(activeRecognition){try{activeRecognition.stop()}catch(e){}activeRecognition=null}
+ const rec=new SR();activeRecognition=rec;rec.lang="it-IT";rec.continuous=false;rec.interimResults=true;rec.maxAlternatives=1;
+ const original=button?.textContent||"🎙️ Detta";
+ if(button){button.textContent="🔴 Ascolto…";button.classList.add("listening")}
+ const base=target.value.trim();let finalText="";
+ rec.onresult=e=>{
+   let interim="";
+   for(let i=e.resultIndex;i<e.results.length;i++){
+     const t=e.results[i][0].transcript;
+     if(e.results[i].isFinal)finalText+=t+" ";else interim+=t;
+   }
+   target.value=(base+(base?" ":"")+finalText+interim).trimStart();
+ };
+ const finish=()=>{activeRecognition=null;if(button){button.textContent=original;button.classList.remove("listening")}};
+ rec.onerror=e=>{
+   finish();
+   const msg=e?.error==="not-allowed"?"Permesso microfono negato. Abilitalo in Chrome oppure usa il microfono della tastiera.":"Dettatura non disponibile qui: usa il microfono della tastiera Android.";
+   showToast(msg,4200);target.focus();
+ };
+ rec.onend=finish;
+ try{rec.start();showToast("Parla adesso. La dettatura si fermerà automaticamente.",1800)}catch(e){finish();showToast("Apri il file in Chrome per la dettatura diretta, oppure usa il microfono della tastiera.",4200)}
+}
+/* MENU & RICETTARIO */
+function recipesPage(){
+ setPage("ricette");
+ app.innerHTML=`<button class="back" onclick="home()">← IN CUCINA</button><div id="recipeRoot"></div>`;
+ renderRecipes();
+}
+function handleMenuPhoto(input){
+ const f=input.files?.[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=e=>{menuPhotoDataUrl=e.target.result;renderRecipes()};
+ r.readAsDataURL(f);
+}
+function csvList(v){return String(v||"").split(",").map(x=>x.trim()).filter(Boolean)}
+async function addMenuRecipe(){
+ if(!canStaff())return;
+ const name=document.getElementById("recipeName").value.trim();if(!name)return alert("Inserisci il nome del piatto.");
+ const data={
+   name,
+   ingredients:csvList(document.getElementById("recipeIngredients").value),
+   scraps:csvList(document.getElementById("recipeScraps").value),
+   recipe:document.getElementById("recipeText").value.trim(),
+   author:currentProfile.name,authorUid:currentUser.uid,createdAt:ts(),updatedAt:ts()
+ };
+ if(onlineMode)await db.collection("menuRecipes").add(data);
+ else{menuRecipes.unshift({id:"r"+Date.now(),...data});saveDemo();renderRecipes()}
+}
+async function deleteMenuRecipe(id){
+ if(!canStaff())return;
+ if(onlineMode)await db.collection("menuRecipes").doc(id).delete();
+ else{menuRecipes=menuRecipes.filter(x=>x.id!==id);saveDemo();renderRecipes()}
+}
+function renderRecipes(){
+ recipeRoot.innerHTML=`<div class="card"><h2>Menu & Ricettario</h2><p class="muted">Dal menu costruiamo un archivio di piatti, ingredienti, ricette e possibili scarti riutilizzabili per lo Staff Meal.</p></div>
+ <h3 class="sectionTitle">Foto del menu</h3>
+ <div class="menuImport">
+   <input type="file" accept="image/*" capture="environment" onchange="handleMenuPhoto(this)">
+   ${menuPhotoDataUrl?`<img src="${menuPhotoDataUrl}">`:""}
+   <div class="photoStatus">${menuPhotoDataUrl?"Foto caricata.":"Scatta o carica una foto del menu."} Il riconoscimento automatico dei piatti dalla foto verrà attivato con il servizio AI nella versione online. Per ora puoi costruire il ricettario qui sotto.</div>
+ </div>
+ ${canStaff()?`<h3 class="sectionTitle">Aggiungi piatto / ricetta</h3><div class="card"><div class="formgrid">
+   <div class="full"><input id="recipeName" placeholder="Nome piatto"></div>
+   <div class="full voiceField"><input id="recipeIngredients" placeholder="Ingredienti, separati da virgola"><button class="voiceBtn" onclick="startDictation('recipeIngredients',this)">🎙️ Ingredienti</button></div>
+   <div class="full voiceField"><input id="recipeScraps" placeholder="Scarti o ritagli riutilizzabili, separati da virgola"><button class="voiceBtn" onclick="startDictation('recipeScraps',this)">🎙️ Scarti</button></div>
+   <div class="full voiceField"><textarea id="recipeText" rows="7" placeholder="Ricetta / procedimento / note"></textarea><button class="voiceBtn" onclick="startDictation('recipeText',this)">🎙️ Detta ricetta</button></div>
+   <div><button onclick="addMenuRecipe()">Aggiungi al ricettario</button></div><div class="full dictationHint">🎙️ Se il pulsante non può usare il riconoscimento vocale nel visualizzatore in cui hai aperto l’app, il campo si attiva automaticamente: usa il microfono della tastiera Android. In Chrome la dettatura diretta ha più probabilità di funzionare.</div>
+ </div></div>`:""}
+ <h3 class="sectionTitle">Piatti del menu</h3>
+ <div class="recipeGrid">${menuRecipes.map(r=>`<div class="recipeCard">
+   <div class="row"><h3>${r.name}</h3>${canStaff()?`<button class="danger" onclick="deleteMenuRecipe('${r.id}')">Elimina</button>`:""}</div>
+   <small>INGREDIENTI</small><div class="tagRow">${(r.ingredients||[]).map(x=>`<span class="miniTag">${x}</span>`).join("")||'<span class="muted">—</span>'}</div>
+   <div style="height:10px"></div><small>SCARTI / RITAGLI UTILI</small><div class="tagRow">${(r.scraps||[]).map(x=>`<span class="miniTag">${x}</span>`).join("")||'<span class="muted">—</span>'}</div>
+   <div style="margin-top:10px"><small>ALLERGENI RILEVATI</small><div>${recipeAllergens(r).length?recipeAllergens(r).map(a=>`<span class="allergenPill">${a}</span>`).join(""):'<span class="allergenNone">nessuno rilevato</span>'}</div></div>
+   ${r.recipe?`<p>${r.recipe}</p>`:""}<div class="taskmeta">inserito da ${r.author||"?"}</div>
+ </div>`).join("")||'<div class="card muted">Nessun piatto ancora inserito.</div>'}</div>`;
+}
+
+init();
+
+
+</script>
+
+<script>
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+  });
+}
+</script>
+
+</body>
+</html>
