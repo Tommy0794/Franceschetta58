@@ -83,7 +83,7 @@ jobs:
       - name: Prepara sito
         uses: actions/upload-pages-artifact@v3
         with:
-          path: buildsrc/pwa
+          path: .
 
       - name: Pubblica
         id: deployment
